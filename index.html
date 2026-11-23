@@ -19,8 +19,15 @@
       href="./assets/backgrounds/pr_bg01_spark_exterior.webp"
       fetchpriority="high"
     />
-    <link rel="preload" href="./assets/fonts/noto-serif-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="./assets/fonts/noto-serif-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="./css/game.css?v=vi2" />
+    <link rel="stylesheet" href="./css/field.css" />
   </head>
   <body>
     <main id="stage" tabindex="-1" aria-label="Hồ sơ voi thất lạc">
@@ -46,6 +53,7 @@
               <path class="sound-off" d="m16 9 5 6m0-6-5 6" /></svg
             ><span>SOUND</span>
           </button>
+          <button id="field-book" type="button" hidden>Sổ tay</button>
           <button id="skip" type="button" aria-label="Bỏ qua Prologue">
             SKIP <span aria-hidden="true">»</span>
           </button>
@@ -80,6 +88,6 @@
       <button id="modal-close" class="close" aria-label="Đóng">×</button>
     </dialog>
     <noscript>Vui lòng bật JavaScript để chơi Hồ sơ voi thất lạc.</noscript>
-    <script type="module" src="./js/main.js?v=vi2"></script>
+    <script type="module" src="./js/main.js?v=chapters1"></script>
   </body>
 </html>

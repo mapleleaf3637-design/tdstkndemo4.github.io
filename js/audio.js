@@ -35,6 +35,27 @@ export class Soundscape {
       this.play(this.effect);
     }
   }
+  note() {
+    if (!this.on) return;
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      this.notes ??= new AudioCtx();
+      if (this.notes.state === "suspended") this.notes.resume().catch(() => {});
+      const oscillator = this.notes.createOscillator();
+      const volume = this.notes.createGain();
+      const now = this.notes.currentTime;
+      oscillator.frequency.setValueAtTime(640, now);
+      oscillator.frequency.exponentialRampToValueAtTime(400, now + 0.1);
+      volume.gain.setValueAtTime(0.035, now);
+      volume.gain.exponentialRampToValueAtTime(0.001, now + 0.11);
+      oscillator.connect(volume).connect(this.notes.destination);
+      oscillator.start(now);
+      oscillator.stop(now + 0.12);
+    } catch {
+      /* Audio is optional on devices with restricted playback. */
+    }
+  }
   suspend() {
     this.bed.pause();
     this.effect.pause();

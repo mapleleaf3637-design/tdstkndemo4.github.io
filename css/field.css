@@ -1,0 +1,1025 @@
+.field-active .toolbar {
+  z-index: 5;
+  pointer-events: none;
+}
+.field-active .toolbar button {
+  pointer-events: auto;
+}
+.field-active #chapter-label,
+.field-active #field-book,
+.field-active #skip {
+  letter-spacing: 0.025em;
+}
+.field-active #speaker {
+  text-transform: uppercase;
+}
+#stage.field-active #shade {
+  background: linear-gradient(
+    180deg,
+    #30271935,
+    transparent 21%,
+    transparent 70%,
+    #39291024
+  );
+}
+#field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: var(--ink);
+  --cream: #fbefda;
+  --deep: #384f3d;
+  --shadow: 0 4px 14px #33271735;
+  --playtop: calc(var(--top) + 48px);
+}
+#field img {
+  object-fit: contain;
+  user-select: none;
+}
+#field button,
+#field a,
+#field details,
+#field summary {
+  pointer-events: auto;
+}
+#field h1,
+#field h2,
+.field-modal-content h2 {
+  font-family: var(--serif);
+  line-height: 1.18;
+}
+#field h1 {
+  font-size: clamp(21px, 3cqw, 48px);
+  margin: 0.14em 0;
+}
+#field h2 {
+  font-size: clamp(17px, 2.1cqw, 33px);
+  margin: 0.15em 0;
+}
+#field small,
+.field-caption small {
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  font-size: clamp(10px, 0.91cqw, 14px);
+}
+#field p {
+  margin: 0.3em 0 0.6em;
+  line-height: 1.4;
+}
+#field .field-primary,
+#field .secondary,
+.photo-trigger {
+  min-height: 44px;
+  border: 1px solid #584d32;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 0.4em 1.15em;
+  font-size: clamp(13px, 1.25cqw, 18px);
+}
+.field-primary {
+  background: #456048;
+  color: #fff9e9;
+  box-shadow: 0 2px 0 #354735;
+}
+.field-primary:hover {
+  background: #304b37;
+}
+.field-person,
+.field-animal,
+.care-supplies,
+.intro-board {
+  position: absolute;
+  bottom: var(--scene-bottom);
+  filter: drop-shadow(0 3px 2px #463a2729);
+}
+.field-person {
+  left: 9%;
+  width: 27%;
+  height: calc(100% - var(--playtop) - var(--scene-bottom));
+}
+.field-person.opening-person {
+  left: 62%;
+}
+.field-animal {
+  height: 49%;
+  width: 51%;
+}
+.field-animal.paired {
+  left: 42%;
+  max-height: calc(100% - var(--playtop) - var(--scene-bottom));
+  height: 42%;
+}
+.field-animal.alone {
+  left: 23%;
+  max-height: calc(100% - var(--playtop) - var(--scene-bottom));
+}
+.field-person.opening-person + .field-animal {
+  width: 22%;
+  height: 18%;
+  left: 40%;
+  bottom: 41%;
+}
+.care-supplies {
+  left: 33%;
+  width: 12%;
+  height: 14%;
+}
+.field-chapter-title,
+.field-heading,
+.field-caption,
+.field-paper,
+.rank-sheet,
+.game-stats,
+.rope-foot,
+.hub-foot,
+.unlock-note,
+.photo-trigger {
+  background: var(--cream);
+  color: var(--ink);
+  border: 1px solid #a88d61;
+  box-shadow: var(--shadow);
+}
+.field-chapter-title {
+  position: absolute;
+  left: 6%;
+  top: 26%;
+  width: 38%;
+  border-radius: 5px 23px 8px 16px;
+  padding: 1.5% 2.2%;
+  background: #faf0daed;
+}
+.field-chapter-title small,
+.field-heading small,
+.field-paper small,
+.field-caption small {
+  color: #4d654a;
+}
+.field-chapter-title h1 {
+  font-weight: 500;
+}
+.photo-trigger {
+  position: absolute;
+  right: var(--m);
+  bottom: calc(var(--scene-bottom) + 1cqh);
+  border-radius: 22px;
+  background: #fff3dcee;
+}
+.unlock-note {
+  position: absolute;
+  left: 36%;
+  top: var(--playtop);
+  display: flex;
+  align-items: center;
+  padding: 0.3em 0.9em 0.3em 0.4em;
+  gap: 0.5em;
+  border-radius: 28px;
+  font-size: clamp(10px, 1cqw, 15px);
+}
+.unlock-note img {
+  width: clamp(30px, 4cqw, 54px);
+  height: clamp(30px, 4cqw, 54px);
+}
+.unlock-note strong {
+  display: block;
+}
+.start-booth {
+  position: absolute;
+  right: 11%;
+  bottom: calc(var(--scene-bottom) + 2cqh);
+}
+.intro-board {
+  right: 15%;
+  width: 34%;
+  height: 33%;
+  bottom: calc(var(--scene-bottom) + 8cqh);
+}
+.rank-sheet {
+  position: absolute;
+  left: 39%;
+  width: 50%;
+  top: var(--playtop);
+  height: 35%;
+  border-radius: 12px;
+  padding: 1% 2%;
+  display: flex;
+  flex-direction: column;
+}
+.rank-sheet img {
+  height: 78%;
+  width: 100%;
+}
+.rank-sheet div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  font-size: clamp(11px, 1.25cqw, 19px);
+}
+.field-paper,
+.field-heading,
+.field-caption,
+.hub-foot,
+.rope-foot,
+.game-stats {
+  border-radius: 16px 12px 18px 10px;
+}
+.field-heading {
+  position: absolute;
+  top: var(--playtop);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5% 2.5%;
+  text-align: center;
+  white-space: nowrap;
+}
+#field .field-heading h1 {
+  font-size: clamp(19px, 2.5cqw, 38px);
+  font-weight: 500;
+}
+.field-paper {
+  position: absolute;
+  padding: 2.5%;
+  background: #fcf1dcf5;
+}
+.field-paper p,
+.field-caption p {
+  font-size: clamp(14px, 1.45cqw, 23px);
+}
+.result-paper {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -43%);
+  width: min(73%, 750px);
+  text-align: center;
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.7em;
+  flex-wrap: wrap;
+}
+.field-caption {
+  position: absolute;
+  left: var(--m);
+  right: var(--m);
+  bottom: var(--foot);
+  padding: 1% 3%;
+}
+.field-caption p {
+  font-family: var(--serif);
+}
+#field .field-caption p {
+  margin: 0.12em 0;
+}
+.store-objects {
+  position: absolute;
+  inset: 31% 8% 22%;
+}
+.store-item {
+  position: absolute;
+  border: 0;
+  background: none;
+  min-width: 44px;
+  min-height: 44px;
+  width: 19%;
+  height: 50%;
+  padding: 1%;
+  border-radius: 14px;
+}
+.store-item img {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 3px 2px #36281359);
+}
+.store-item:focus-visible,
+.store-item:hover {
+  background: #ffebaf55;
+}
+.store-item:disabled {
+  opacity: 0.3;
+}
+.obj-0 {
+  left: 3%;
+  top: 2%;
+}
+.obj-1 {
+  left: 63%;
+  top: 0%;
+}
+.obj-2 {
+  left: 38%;
+  top: 0%;
+}
+.obj-3 {
+  left: 22%;
+  top: 53%;
+}
+.obj-4 {
+  left: 48%;
+  top: 53%;
+}
+.obj-5 {
+  left: 78%;
+  top: 50%;
+}
+.item-cards {
+  inset: var(--playtop) 12% var(--foot);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1cqh;
+  text-align: center;
+}
+.item-cards > div {
+  display: flex;
+  min-height: 0;
+  width: 100%;
+  justify-content: center;
+  gap: 4%;
+}
+.item-cards article {
+  flex: 0 1 46%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 0;
+}
+.item-cards img {
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  max-height: 32cqh;
+}
+.item-cards p {
+  font-size: clamp(12px, 1.25cqw, 19px);
+}
+.booths {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 38%;
+  bottom: 20%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7%;
+  align-items: end;
+}
+.booth {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background: transparent;
+  border: 0;
+  color: #352e23;
+  padding: 0;
+}
+.booth img {
+  width: clamp(46px, 7.8cqw, 128px);
+  height: 45%;
+  margin-bottom: 0.2em;
+  filter: drop-shadow(0 2px 3px #352d21a0);
+}
+.booth > strong {
+  position: absolute;
+  bottom: calc(2.7em + 16%);
+  left: calc(50% - 3.5cqw);
+  border-radius: 50%;
+  background: #425b45;
+  color: white;
+  border: 2px solid #f9edd5;
+  width: clamp(24px, 2.7cqw, 42px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font-size: clamp(14px, 1.6cqw, 24px);
+}
+.booth > span,
+.booth > small {
+  background: #f9ecd2;
+  border: 1px solid #84694a;
+  padding: 0.24em 0.7em;
+  border-radius: 7px;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(14px, 1.6cqw, 26px);
+}
+#field .booth small {
+  font-family: var(--sans);
+  margin-top: -1px;
+  letter-spacing: 0.03em;
+  font-size: clamp(10px, 0.95cqw, 15px);
+}
+.booth.done > span,
+.booth.done > small {
+  background: #dbe7ca;
+}
+.hub-foot,
+.rope-foot {
+  position: absolute;
+  bottom: var(--foot);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.65em 1.4em;
+  max-width: 90%;
+  text-align: center;
+  font-size: clamp(12px, 1.25cqw, 19px);
+}
+.hub-foot:has(button) {
+  padding: 0.26em;
+}
+.game-stats {
+  position: absolute;
+  top: var(--top);
+  display: flex;
+  gap: 1em;
+  left: 49%;
+  transform: translateX(-50%);
+  padding: 0.45em 1em;
+  font-size: clamp(11px, 1.1cqw, 17px);
+  min-height: 40px;
+  align-items: center;
+  white-space: nowrap;
+}
+.game-stats b {
+  font-variant-numeric: tabular-nums;
+  color: #334b38;
+}
+#rope-field {
+  position: absolute;
+  top: var(--playtop);
+  bottom: 21%;
+  left: 9%;
+  right: 9%;
+  pointer-events: auto;
+  touch-action: none;
+  overflow: hidden;
+  border: 2px solid #79633f;
+  border-radius: 12px;
+  background: linear-gradient(#c4b284b8, #e4c48eaa);
+  box-shadow: var(--shadow);
+}
+.rope-lane {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--lane) * 19%);
+  height: calc(17% + var(--lane) * 1.3%);
+  border-bottom: 2px solid #816e4cb8;
+  pointer-events: none;
+}
+.target-runner {
+  position: absolute;
+  left: 0;
+  width: var(--width);
+  height: 100%;
+  animation: field-run var(--duration, var(--speed)) linear var(--delay)
+    infinite;
+}
+@keyframes field-run {
+  from {
+    left: calc(-1 * var(--width));
+  }
+  to {
+    left: var(--travel, 100%);
+  }
+}
+.rope-target {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+}
+.rope-target img {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.rope-target b {
+  position: absolute;
+  bottom: 0;
+  right: 12%;
+  background: #fff4d5;
+  color: #41311d;
+  border: 1px solid #806746;
+  border-radius: 4px;
+  padding: 0 3px;
+  line-height: 1.15;
+  font-size: clamp(9px, 1.05cqw, 16px);
+  pointer-events: none;
+}
+.rope-target.knocked {
+  visibility: hidden;
+}
+.grass {
+  position: absolute;
+  width: 8%;
+  height: 14%;
+  pointer-events: auto;
+}
+.grass img {
+  height: 100%;
+  width: 100%;
+}
+.grass-a {
+  top: 52%;
+  left: 22%;
+}
+.grass-b {
+  bottom: 1%;
+  right: 12%;
+}
+#aim,
+.thrown-ring {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+#aim {
+  width: 30px;
+  height: 30px;
+  border: 2px dashed white;
+  border-radius: 50%;
+  color: white;
+  background: #36584088;
+  display: grid;
+  place-items: center;
+}
+.thrown-ring {
+  height: 19%;
+  width: 14%;
+  animation: land-ring 0.2s ease-out both;
+}
+@keyframes land-ring {
+  from {
+    opacity: 0.3;
+    scale: 1.8;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+.rope-foot {
+  width: 82%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0.4% 2%;
+}
+.rope-handle {
+  pointer-events: auto;
+  width: 9%;
+  height: clamp(42px, 8cqh, 84px);
+  touch-action: none;
+}
+.rope-foot span {
+  flex: 1;
+  text-align: left;
+}
+.quiz-paper {
+  position: absolute;
+  inset: var(--playtop) 17% var(--foot);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: #f5e5c9 url("../assets/field/p3_03.webp") center/100% 100%;
+  border-radius: 15px;
+  padding: 1% 6% 2%;
+  box-shadow: var(--shadow);
+}
+.quiz-board {
+  height: 15%;
+  width: 80%;
+  position: relative;
+}
+.quiz-track {
+  width: 100%;
+  height: 100%;
+  object-fit: fill !important;
+}
+.quiz-token {
+  position: absolute;
+  width: 10%;
+  height: 100%;
+  top: -16%;
+  left: calc(3% + var(--steps) * 7%);
+  transition: left 0.15s;
+}
+#field .quiz-paper h1 {
+  text-align: center;
+  background: #fbefdde8;
+  border-radius: 5px;
+  font-size: clamp(16px, 1.7cqw, 29px);
+  padding: 0.2em 0.45em;
+}
+.answers,
+.products {
+  display: flex;
+  justify-content: center;
+  gap: 4%;
+  width: 100%;
+  min-height: 0;
+}
+.answers {
+  height: 58%;
+}
+.answers button,
+.products button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid #aa8b61;
+  border-radius: 12px;
+  background: #fff4ddf5;
+  color: var(--ink);
+  padding: 0.4em;
+  box-shadow: 0 2px 0 #987f57;
+}
+.answers button {
+  width: 48%;
+  height: 100%;
+}
+.answer-art {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  background-size: 200% 100%;
+  background-position: var(--half) center;
+  background-repeat: no-repeat;
+}
+.answers span {
+  font-size: clamp(12px, 1.35cqw, 20px);
+  font-weight: 700;
+}
+.answers b,
+.products b {
+  display: inline-grid;
+  place-items: center;
+  background: #49654b;
+  color: white;
+  border-radius: 50%;
+  width: 1.65em;
+  height: 1.65em;
+  margin-right: 0.4em;
+}
+.answers .correct {
+  background: #cfe9be;
+}
+.answers .incorrect {
+  background: #ecd0bc;
+}
+.products {
+  position: absolute;
+  top: 20%;
+  bottom: 31%;
+  left: 13%;
+  width: 74%;
+  gap: 4%;
+}
+.products button {
+  width: 31%;
+  height: 100%;
+}
+.products img {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+}
+.products b {
+  flex-shrink: 0;
+  margin: 0.1em 0;
+}
+.order-caption {
+  display: flex;
+  align-items: center;
+  gap: 1%;
+  height: 23%;
+}
+.order-caption img {
+  width: 12%;
+  height: 100%;
+}
+.order-caption div {
+  flex: 1;
+}
+.customer-intro,
+.owner {
+  position: absolute;
+  left: 8%;
+  top: var(--playtop);
+  width: 27%;
+  bottom: var(--foot);
+  height: calc(100% - var(--playtop) - var(--foot));
+}
+#field[data-view="request"] .result-paper {
+  left: 62%;
+  width: 55%;
+}
+.owner-copy {
+  left: 44%;
+  right: 6%;
+  top: 50%;
+  transform: translateY(-42%);
+  text-align: left;
+  max-height: calc(100% - var(--playtop) - var(--foot));
+  overflow: auto;
+  pointer-events: auto;
+}
+.owner-copy p {
+  font-size: clamp(13px, 1.35cqw, 21px);
+}
+.owner {
+  left: 5%;
+  width: 24%;
+}
+.chosen-product {
+  position: absolute;
+  left: 27%;
+  width: 16%;
+  height: 28%;
+  top: 44%;
+}
+.customer-thanks {
+  font-style: italic;
+}
+#modal[data-kind="notebook"],
+#modal[data-kind="field-photo"] {
+  width: min(90vw, 900px);
+  max-height: 93dvh;
+  overflow: auto;
+}
+.field-photo {
+  margin: 0;
+  text-align: center;
+}
+.field-photo img {
+  display: block;
+  width: 100%;
+  height: min(45dvh, 360px);
+  object-fit: contain;
+  background: #ecdcbf url("../assets/field/ui_09.webp") center/100% 100%;
+  padding: 1.2%;
+}
+.field-photo figcaption,
+.photo-meta {
+  font-size: clamp(12px, 2.2vmin, 16px);
+  line-height: 1.35;
+  margin: 0.4em auto;
+}
+.photo-meta a {
+  color: #316044;
+}
+.photo-pages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.photo-pages button {
+  min-width: 44px;
+}
+.book-content {
+  display: flex;
+  align-items: center;
+  gap: 4%;
+  justify-content: center;
+}
+.book-map {
+  position: relative;
+  width: clamp(110px, 25vw, 300px);
+  aspect-ratio: 1.075;
+  flex-shrink: 0;
+}
+.map-base {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.book-node {
+  position: absolute;
+  width: 29%;
+  height: 29%;
+  transform: translate(-50%, -50%);
+  opacity: 0.27;
+  filter: grayscale(1);
+}
+.book-node img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.book-node.earned {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px #d1ac50);
+}
+.n0 {
+  left: 50%;
+  top: 15%;
+}
+.n1 {
+  left: 82%;
+  top: 32%;
+}
+.n2 {
+  left: 82%;
+  top: 69%;
+}
+.n3 {
+  left: 50%;
+  top: 86%;
+}
+.n4 {
+  left: 18%;
+  top: 69%;
+}
+.n5 {
+  left: 18%;
+  top: 32%;
+}
+.book-notes {
+  flex: 1;
+  text-align: left;
+  max-height: 43dvh;
+  overflow: auto;
+  pointer-events: auto;
+}
+.book-notes details {
+  border-bottom: 1px solid #bcab89;
+  padding: 0.25em;
+  color: #38523e;
+}
+.book-notes summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 30px;
+}
+.book-notes .locked {
+  color: #695e50;
+}
+.final-book {
+  inset: var(--playtop) 8% var(--foot);
+  padding: 1% 3%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.3cqh;
+}
+#field .final-book h1 {
+  font-size: clamp(18px, 2.5cqw, 37px);
+}
+.final-book .book-content {
+  width: 88%;
+  min-height: 0;
+  flex: 1;
+}
+.final-book .book-map {
+  width: auto;
+  height: 95%;
+}
+.final-book .book-notes {
+  max-height: 100%;
+  font-size: clamp(11px, 1.25cqw, 18px);
+}
+.final-book .book-notes summary {
+  min-height: 0;
+}
+#field .final-book > p {
+  font-size: clamp(11px, 1.2cqw, 18px);
+  margin: 0.25em 0;
+}
+.clock-paused .target-runner {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .target-runner {
+    animation: field-run var(--duration, var(--speed)) linear var(--delay)
+      infinite !important;
+  }
+}
+@media (max-height: 550px) and (orientation: landscape) {
+  .field-active .toolbar .tools {
+    gap: 3px;
+  }
+  .field-active .tools button {
+    font-size: 10px;
+    padding: 0 7px;
+  }
+  .result-paper {
+    padding: 2%;
+  }
+  .game-stats {
+    min-height: 36px;
+    gap: 0.7em;
+  }
+  .final-book .book-notes summary {
+    min-height: 18px;
+  }
+}
+@media (orientation: portrait) and (max-width: 900px) {
+  .field-active .toolbar {
+    left: 2%;
+    right: 2%;
+  }
+  .field-active .tools {
+    gap: 2px;
+  }
+  .field-active .tools button {
+    padding: 0 5px;
+  }
+  .game-stats {
+    top: var(--playtop);
+    left: 50%;
+  }
+  #rope-field,
+  .quiz-paper {
+    top: calc(var(--playtop) + 48px);
+    left: 4%;
+    right: 4%;
+  }
+  .products {
+    top: 27%;
+    bottom: 30%;
+    left: 3%;
+    width: 94%;
+  }
+  .booths {
+    left: 2%;
+    right: 2%;
+    gap: 2%;
+  }
+  .booth > span {
+    font-size: 12px;
+  }
+  .rank-sheet {
+    width: 60%;
+    left: 36%;
+  }
+  .final-book {
+    inset: var(--playtop) 3% var(--foot);
+  }
+  .final-book .book-content {
+    flex-direction: column;
+  }
+  .final-book .book-map {
+    height: 45%;
+  }
+  .book-content {
+    gap: 2%;
+  }
+  .owner-copy {
+    left: 36%;
+    right: 2%;
+  }
+  .field-heading {
+    max-width: 95%;
+    white-space: normal;
+  }
+  .field-chapter-title {
+    width: 57%;
+  }
+}
+.target-runner {
+  display: flex;
+  justify-content: center;
+}
+.rope-target {
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 0.98;
+}
+.quiz-paper {
+  position: absolute;
+}
+.answer-art {
+  width: auto;
+  max-width: 100%;
+  height: 0;
+  aspect-ratio: 1;
+  min-height: 0;
+  flex: 1 1 auto;
+  align-self: center;
+}
+.book-node.earned {
+  animation: field-glow 3s ease-in-out infinite alternate;
+}
+@keyframes field-glow {
+  to {
+    filter: drop-shadow(0 0 7px #d2aa42);
+  }
+}
+.final-book {
+  background: #faf0dc url("../assets/field/bg_14.webp") center/cover;
+}

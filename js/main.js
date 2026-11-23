@@ -1,6 +1,7 @@
+import { FieldGame } from "./field/game.js";
 import { history as beats } from "./scenes.js";
 import { paint, image, warm } from "./visuals.js";
-import { Soundscape } from "./audio.js";
+import { Soundscape } from "./audio.js?field1";
 import { TYPEWRITER_MS, NEXT_CHAPTER_URL } from "./config.js";
 const $ = (s) => document.querySelector(s);
 const stage = $("#stage"),
@@ -10,9 +11,10 @@ const stage = $("#stage"),
 const typeMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const portrait = matchMedia("(orientation:portrait) and (max-width:900px)");
 const sound = new Soundscape();
-const segmenter = typeof Intl.Segmenter === "function"
-  ? new Intl.Segmenter("vi", { granularity: "grapheme" })
-  : null;
+const segmenter =
+  typeof Intl.Segmenter === "function"
+    ? new Intl.Segmenter("vi", { granularity: "grapheme" })
+    : null;
 let dialogueLine = "";
 let index = 0,
   typing = false,
@@ -31,7 +33,7 @@ function complete() {
   clearInterval(timer);
   typing = false;
   stage.dataset.typing = "false";
-  if (!handoff) $("#line").textContent = dialogueLine;
+  $("#line").textContent = dialogueLine;
 }
 function text(beat, full) {
   dialogueLine = beat.line.normalize("NFC");
@@ -118,11 +120,12 @@ function go(i, back = false) {
   render(back, !back);
 }
 function next() {
-  if (handoff || modal.open || inPortrait()) return;
+  if (modal.open || inPortrait() || (handoff && !field.talking)) return;
   if (typing) {
     complete();
     return;
   }
+  if (handoff) return field.advance();
   if (beats[index].action) return;
   if (index + 1 === beats.length) {
     toChapter();
@@ -131,7 +134,9 @@ function next() {
   go(index + 1);
 }
 function prev() {
-  if (handoff || modal.open || inPortrait() || index === 0) return;
+  if (modal.open || inPortrait()) return;
+  if (handoff) return field.back();
+  if (index === 0) return;
   go(index - 1, true);
 }
 function toChapter() {
@@ -184,49 +189,75 @@ function confirmSkip() {
   );
   cancel.focus();
 }
-function chapter() {
-  handoff = true;
-  clearInterval(timer);
-  clearTimeout(idle);
-  typing = false;
-  previousScene = "chapter";
-  priorVisual = "";
-  sound.enter("chapter", false);
-  $("#dialogue").hidden = true;
-  $("#skip").hidden = true;
-  $("#tap-hint").hidden = true;
-  $("#scene-count").textContent = "0 / 6";
-  $("#chapter-label").textContent = "CHƯƠNG 1";
-  stage.dataset.scene = "chapter";
-  delete stage.dataset.beat;
-  background("PR-BG06");
-  const box = document.createElement("section");
-  box.className = "handoff";
-  const k = document.createElement("span");
-  k.className = "eyebrow";
-  k.textContent = "TÂY NGUYÊN, VIỆT NAM";
-  const h = document.createElement("h1");
-  h.textContent = "Tập tính của voi";
-  const p = document.createElement("p");
-  p.textContent = "Bạn đã đến bìa rừng. Phần chơi Chương 1 đang được chuẩn bị.";
-  const replay = document.createElement("a");
-  replay.className = "action";
-  replay.href = "#/prologue";
-  replay.textContent = "Đọc lại Prologue";
-  box.append(k, h, p, replay);
-  art.replaceChildren(box);
-}
+const field = new FieldGame({
+  stage,
+  art,
+  modal,
+  backdrop: $("#backdrop"),
+  portrait: inPortrait,
+  speak: text,
+  cue: () => sound.note(),
+  silence: () => {
+    clearInterval(timer);
+    typing = false;
+    stage.dataset.typing = "false";
+  },
+  nav: (first, gated) => {
+    $("#prev").disabled = first;
+    $("#next").disabled = gated;
+  },
+  count: (count) => {
+    $("#scene-count").textContent = count + " / 6";
+  },
+  layout: (chapter, count, talking, skip) => {
+    $("#dialogue").hidden = !talking;
+    $("#skip").hidden = !skip;
+    $("#skip").textContent = "Lướt thoại";
+    $("#skip").setAttribute("aria-label", "Lướt đoạn thoại này");
+    $("#field-book").hidden = false;
+    $("#tap-hint").hidden = true;
+    $("#chapter-label").textContent = "CHƯƠNG " + chapter;
+    $("#scene-count").textContent = count + " / 6";
+  },
+  open: (title, kind, content) => {
+    openDialog(title);
+    modal.dataset.kind = kind;
+    const page = document.createElement("div");
+    page.className = "field-modal-content";
+    page.innerHTML = content;
+    body.append(page);
+    $("#modal-close").focus();
+  },
+});
+$("#field-book").addEventListener("click", () => field.openBook());
 function route() {
   if (modal.open) closeDialog();
-  if (location.hash === "#/chapter-1") chapter();
-  else {
+  const chapter = location.hash.match(/^#\/chapter-([123])$/);
+  if (chapter || location.hash === "#/epilogue") {
+    clearInterval(timer);
+    clearTimeout(idle);
+    typing = false;
+    handoff = true;
+    previousScene = "chapter";
+    priorVisual = "";
+    sound.enter("chapter", false);
+    field.start(chapter ? Number(chapter[1]) : "epilogue");
+  } else {
+    if (field.active) field.leave();
+    stage.classList.remove("field-active");
+    delete stage.dataset.mode;
+    $("#field-book").hidden = true;
+    $("#skip").innerHTML = 'SKIP <span aria-hidden="true">»</span>';
+    $("#skip").setAttribute("aria-label", "Bỏ qua Prologue");
     index = 0;
+    previousScene = "";
+    priorVisual = "";
     render(false, false);
   }
 }
 stage.addEventListener("click", (e) => {
   if (
-    handoff ||
+    (handoff && !field.talking) ||
     modal.open ||
     inPortrait() ||
     e.target.closest("button,a,dialog")
@@ -238,9 +269,14 @@ stage.addEventListener("click", (e) => {
 });
 $("#prev").addEventListener("click", prev);
 $("#next").addEventListener("click", next);
-$("#skip").addEventListener("click", confirmSkip);
+$("#skip").addEventListener("click", () =>
+  handoff ? field.skipDialogue() : confirmSkip(),
+);
 $("#sound").addEventListener("click", () => {
   const on = sound.toggle(previousScene);
+  try {
+    localStorage.setItem("tdstkndemo4:sound", String(on));
+  } catch {}
   $("#sound").setAttribute("aria-pressed", on);
   $("#sound").setAttribute("aria-label", on ? "Tắt âm thanh" : "Bật âm thanh");
 });
@@ -265,7 +301,7 @@ document.addEventListener("keydown", (e) => {
   if (
     inPortrait() ||
     modal.open ||
-    handoff ||
+    (handoff && !field.talking) ||
     e.repeat ||
     e.altKey ||
     e.ctrlKey ||
@@ -297,6 +333,7 @@ stage.addEventListener("pointermove", (e) => {
 });
 function orientation() {
   stage.inert = inPortrait();
+  field.syncClock();
 }
 $("#portrait-play").addEventListener("click", () => {
   document.body.classList.add("allow-portrait");
@@ -306,11 +343,18 @@ $("#portrait-play").addEventListener("click", () => {
 portrait.addEventListener("change", orientation);
 orientation();
 typeMotion.addEventListener("change", () => {
-  if (typeMotion.matches) complete();
+  if (typeMotion.matches && typing) complete();
 });
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) sound.suspend();
   else sound.enter(previousScene, false);
 });
+try {
+  if (localStorage.getItem("tdstkndemo4:sound") === "true") {
+    sound.on = true;
+    $("#sound").setAttribute("aria-pressed", "true");
+    $("#sound").setAttribute("aria-label", "Tắt âm thanh");
+  }
+} catch {}
 window.addEventListener("hashchange", route);
 route();
