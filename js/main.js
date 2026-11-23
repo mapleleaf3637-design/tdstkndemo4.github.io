@@ -10,6 +10,10 @@ const stage = $("#stage"),
 const typeMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const portrait = matchMedia("(orientation:portrait) and (max-width:900px)");
 const sound = new Soundscape();
+const segmenter = typeof Intl.Segmenter === "function"
+  ? new Intl.Segmenter("vi", { granularity: "grapheme" })
+  : null;
+let dialogueLine = "";
 let index = 0,
   typing = false,
   timer = 0,
@@ -27,14 +31,17 @@ function complete() {
   clearInterval(timer);
   typing = false;
   stage.dataset.typing = "false";
-  if (!handoff) $("#line").textContent = beats[index].line;
+  if (!handoff) $("#line").textContent = dialogueLine;
 }
 function text(beat, full) {
+  dialogueLine = beat.line.normalize("NFC");
   complete();
   $("#speaker").textContent = beat.speaker;
-  $("#spoken").textContent = beat.speaker + ". " + beat.line;
+  $("#spoken").textContent = beat.speaker + ". " + dialogueLine;
   if (full || typeMotion.matches || TYPEWRITER_MS <= 0) return;
-  const chars = Array.from(beat.line);
+  const chars = segmenter
+    ? Array.from(segmenter.segment(dialogueLine), ({ segment }) => segment)
+    : dialogueLine.match(/\P{M}\p{M}*|\p{M}+/gu) || [];
   let pos = 0;
   $("#line").textContent = "";
   typing = true;
