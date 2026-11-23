@@ -8,7 +8,7 @@ import {
   questions,
   ranks,
   titles,
-} from "./story.js";
+} from "./story.js?v=dialogue2";
 import { assetUrl, media } from "./media.js";
 import {
   currentChapter,
@@ -95,7 +95,7 @@ export class FieldGame {
       s.mode = "hub";
       s.beat = beats.findIndex((b) => b.chapter === 3);
     }
-    this.render(true);
+    this.render();
   }
   leave() {
     this.stopClock();
@@ -158,7 +158,15 @@ export class FieldGame {
           b.person,
           "field-person" + (opening ? " opening-person" : ""),
         );
-      if (b.animal)
+      if (b.observation) {
+        const [id, label] = b.observation;
+        markup +=
+          '<figure class="behavior-photo">' +
+          pic(id, "", media[id].title) +
+          "<figcaption>Ảnh tư liệu · " +
+          label +
+          "</figcaption></figure>";
+      } else if (b.animal)
         markup += pic(
           b.animal,
           "field-animal " + (b.person ? "paired" : "alone"),
@@ -191,18 +199,29 @@ export class FieldGame {
           "field-primary start-booth",
         );
       const upcoming = beats[s.beat + 1];
+      if (upcoming?.observation && upcoming.observation !== b.observation) {
+        const nextPhoto = new Image();
+        nextPhoto.src = assetUrl(upcoming.observation[0]);
+      }
       if (upcoming && upcoming.bg !== b.bg) {
         const next = new Image();
         next.src = assetUrl(upcoming.bg);
       }
     } else if (mode === "intro") {
-      markup = pic(booth.npc, "field-person");
+      markup =
+        pic(booth.npc, "field-person") +
+        control("leave-intro", "Về sân hội", "leave-intro");
       if (s.booth === 0 && s.intro > 0 && s.intro < 4)
         markup +=
           '<div class="rank-sheet">' +
           pic("p2_05") +
           "<div>" +
-          ranks.map((n) => "<span>" + n + "</span>").join("") +
+          ranks
+            .map(
+              ([name, milestone]) =>
+                "<span><b>" + name + "</b><em>" + milestone + "</em></span>",
+            )
+            .join("") +
           "</div></div>";
       if (s.booth === 1) markup += pic("p3_01", "intro-board");
       if (s.booth === 2) markup += pic("p4_11", "intro-board");
@@ -210,7 +229,7 @@ export class FieldGame {
       if (ready)
         markup += control("start", booth.start, "field-primary start-booth");
       this.api.speak({ speaker: "Chủ sạp", line: booth.intro[s.intro] }, full);
-      this.api.nav(false, ready);
+      this.api.nav(s.intro === 0, ready);
     } else {
       this.api.silence();
       if (mode === "find") markup = storehouse(s);
@@ -291,8 +310,8 @@ export class FieldGame {
     if (!this.talking) return;
     const s = this.s;
     if (s.mode === "intro") {
-      if (s.intro === 0) s.mode = "hub";
-      else s.intro--;
+      if (s.intro === 0) return;
+      s.intro--;
     } else if (s.beat > 0) s.beat--;
     this.render(true);
   }
@@ -332,11 +351,18 @@ export class FieldGame {
     )
       this.api.cue();
     switch (action) {
+      case "leave-intro":
+        if (s.mode !== "intro") return;
+        s.mode = "hub";
+        break;
       case "book":
         return this.openBook();
       case "photos":
         this.photos = beats[s.beat].photos;
-        this.photoIndex = 0;
+        this.photoIndex = Math.max(
+          0,
+          this.photos.indexOf(beats[s.beat].observation?.[0]),
+        );
         return this.openPhotos();
       case "photo-prev":
       case "photo-next":

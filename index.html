@@ -26,8 +26,8 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="./css/game.css?v=vi2" />
-    <link rel="stylesheet" href="./css/field.css" />
+    <link rel="stylesheet" href="./css/game.css?v=dialogue2" />
+    <link rel="stylesheet" href="./css/field.css?v=dialogue2" />
   </head>
   <body>
     <main id="stage" tabindex="-1" aria-label="Hồ sơ voi thất lạc">
@@ -61,20 +61,16 @@
       </header>
       <section id="dialogue" aria-label="Lời thoại">
         <div class="dialogue-surface" aria-hidden="true"></div>
+        <button id="prev" type="button" aria-label="Lời thoại trước">‹</button>
         <div class="dialogue-copy">
           <span id="speaker"></span>
           <p id="line" aria-hidden="true"></p>
           <p id="spoken" class="sr" aria-live="polite" aria-atomic="true"></p>
         </div>
-        <div class="line-controls">
-          <button id="prev" type="button" aria-label="Lời thoại trước">‹</button
-          ><button id="next" type="button" aria-label="Lời thoại tiếp">
-            ›
-          </button>
-        </div>
+        <button id="next" type="button" aria-label="Hiện cả câu">›</button>
       </section>
       <div id="tap-hint" aria-hidden="true">
-        Chạm bên trái để lùi <span>·</span> Chạm bên phải để tiếp
+        Chạm bên trái để lùi <span>·</span> Chạm bên phải để đọc và tiếp tục
       </div>
     </main>
     <div id="rotate">
@@ -88,6 +84,6 @@
       <button id="modal-close" class="close" aria-label="Đóng">×</button>
     </dialog>
     <noscript>Vui lòng bật JavaScript để chơi Hồ sơ voi thất lạc.</noscript>
-    <script type="module" src="./js/main.js?v=chapters1"></script>
+    <script type="module" src="./js/main.js?v=dialogue2"></script>
   </body>
 </html>

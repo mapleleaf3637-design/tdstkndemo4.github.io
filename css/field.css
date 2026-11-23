@@ -193,26 +193,87 @@
   height: 33%;
   bottom: calc(var(--scene-bottom) + 8cqh);
 }
+.leave-intro {
+  position: absolute;
+  top: var(--playtop);
+  left: var(--m);
+  min-height: 44px;
+  padding: 0.4em 1em;
+  border: 1px solid #a58b63;
+  border-radius: 12px;
+  color: var(--ink);
+  background: #faf0da;
+  font-weight: 700;
+}
 .rank-sheet {
   position: absolute;
-  left: 39%;
-  width: 50%;
+  left: 35%;
+  right: var(--m);
   top: var(--playtop);
-  height: 35%;
+  bottom: calc(var(--scene-bottom) + 1cqh);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
   border-radius: 12px;
-  padding: 1% 2%;
-  display: flex;
-  flex-direction: column;
+  padding: 1% 1.5%;
 }
 .rank-sheet img {
-  height: 78%;
+  height: 100%;
   width: 100%;
+  min-height: 0;
 }
 .rank-sheet div {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   text-align: center;
-  font-size: clamp(11px, 1.25cqw, 19px);
+  align-items: start;
+  gap: 0.25em;
+}
+.rank-sheet b,
+.rank-sheet em {
+  display: block;
+}
+.rank-sheet b {
+  font-size: clamp(13px, 1.45cqw, 23px);
+}
+.rank-sheet em {
+  color: #485a40;
+  font-size: clamp(11px, 1.13cqw, 18px);
+  font-style: normal;
+}
+.behavior-photo {
+  position: absolute;
+  top: var(--playtop);
+  bottom: calc(var(--scene-bottom) + 1.2cqh);
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 78%;
+}
+#field .behavior-photo img {
+  display: block;
+  height: calc(100% - 1.75rem);
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border: 3px solid #fdf1dd;
+  box-shadow: var(--shadow);
+  border-radius: 6px;
+  background: #f8efde;
+}
+.behavior-photo figcaption {
+  color: #433726;
+  background: #fff3dc;
+  font-weight: 600;
+  white-space: nowrap;
+  font-size: clamp(11px, 1.1cqw, 16px);
+  padding: 0.22em 0.8em;
+  border-radius: 0 0 8px 8px;
+}
+#field:has(.behavior-photo) .unlock-note {
+  left: var(--m);
 }
 .field-paper,
 .field-heading,
@@ -964,8 +1025,12 @@
     font-size: 12px;
   }
   .rank-sheet {
-    width: 60%;
-    left: 36%;
+    left: 24%;
+    right: 2%;
+    top: calc(var(--playtop) + 46px);
+  }
+  .behavior-photo {
+    max-width: 92%;
   }
   .final-book {
     inset: var(--playtop) 3% var(--foot);

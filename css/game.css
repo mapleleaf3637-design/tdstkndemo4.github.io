@@ -340,17 +340,18 @@ button:disabled {
   font-weight: 760;
   margin: 0 0 0.35em;
 }
+#stage[data-dialogue="waiting"] #line {
+  font-family: var(--sans);
+  font-size: clamp(14px, 1.25cqw, 19px);
+  color: #665840;
+}
 .dialogue-copy p {
   font: 500 clamp(16px, 1.92cqw, 30px) / 1.36 var(--serif);
   margin: 0;
   text-wrap: pretty;
 }
-.line-controls {
-  display: flex;
-  align-self: center;
-  gap: 3px;
-}
-.line-controls button {
+#dialogue > button {
+  flex: 0 0 44px;
   width: 44px;
   height: 44px;
   border: 0;
@@ -359,11 +360,11 @@ button:disabled {
   font: normal 31px/1 var(--serif);
   color: #5a684e;
 }
-.line-controls button:last-child {
+#dialogue > #next {
   background: #536b51;
   color: #fff5dd;
 }
-.line-controls button:focus-visible,
+#dialogue > button:focus-visible,
 .mission button:focus-visible,
 #modal button:focus-visible {
   outline-color: #8b542a;
@@ -900,9 +901,9 @@ button:disabled {
     top: 24%;
     max-width: 90%;
   }
-  body.allow-portrait .line-controls {
-    flex-direction: column;
-    gap: 0;
+  body.allow-portrait #dialogue {
+    gap: 4px;
+    padding-inline: 1cqw;
   }
   body.allow-portrait .character {
     width: 43%;

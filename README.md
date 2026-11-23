@@ -4,11 +4,11 @@ A Vietnamese watercolor visual novel following a researcher from SPARK to Tây N
 
 ## Playing
 
-Open the root or `#/prologue`. Tap right to reveal or advance and left to revisit the previous line. Skip or finish the Prologue to enter `#/chapter-1` at the forest. The notebook records six discoveries. The main game remembers the current scene, equipment, booth results and remaining active time on this browser. The chapter routes resume the corresponding checkpoint. Direct links to later chapters respect earned progress.
+Open the root or `#/prologue`. Tap the right half of the dialogue once to reveal the whole line instantly and again to advance. Tap left to revisit the previous line. Booth introductions have a separate return-to-festival button. Skip or finish the Prologue to enter `#/chapter-1` at the forest. The notebook records six discoveries. The main game remembers the current scene, equipment, booth results and remaining active time on this browser. The chapter routes resume the corresponding checkpoint. Direct links to later chapters respect earned progress.
 
 | Chapter | Activity |
 | --- | --- |
-| 1 | Observe three behaviors and meet Đăm Săn. Open documentary photographs for the location, author, source and licence. |
+| 1 | Observe three behaviors through documentary photographs and meet Đăm Săn. Open documentary photographs for the location, author, source and licence. |
 | 2 | Find Dur and Vơng in the storehouse, then compare the two objects. |
 | 3 | Visit the three booths in any order. Throw five rings in 60 seconds, answer 12 illustrated questions in 30 seconds, or serve three souvenir customers with 120 seconds of selection time each. |
 
@@ -28,6 +28,7 @@ The rope game scores 0, 1, 3, 5, 10 or 20 at impact and unlocks Social History a
 
 The historical game uses cardboard targets and a board-game token. Photographs of Asian elephants outside Vietnam are labeled with their original locations.
 
+- [Các danh hiệu lịch sử theo nghệ nhân Y Khu Êban — Báo Đại biểu Nhân dân](https://daibieunhandan.vn/noi-dai-ky-uc-10211187.html)
 - [Hội voi Buôn Đôn năm 2025 — Bộ Văn hóa, Thể thao và Du lịch](https://bvhttdl.gov.vn/dak-lak-hoi-voi-buon-don-de-lai-an-tuong-sau-sac-voi-nhieu-du-khach-2025031314203164.htm)
 - [Trải nghiệm quan sát voi — Vườn quốc gia Yok Đôn](https://tour.yokdonnationalpark.vn/)
 - [Nguồn ảnh và giấy phép](assets/field/CREDITS.txt)

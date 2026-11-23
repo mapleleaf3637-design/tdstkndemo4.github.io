@@ -1,8 +1,8 @@
-import { FieldGame } from "./field/game.js";
+import { FieldGame } from "./field/game.js?v=dialogue2";
 import { history as beats } from "./scenes.js";
 import { paint, image, warm } from "./visuals.js";
 import { Soundscape } from "./audio.js?field1";
-import { TYPEWRITER_MS, NEXT_CHAPTER_URL } from "./config.js";
+import { NEXT_CHAPTER_URL } from "./config.js";
 const $ = (s) => document.querySelector(s);
 const stage = $("#stage"),
   art = $("#art"),
@@ -11,14 +11,10 @@ const stage = $("#stage"),
 const typeMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const portrait = matchMedia("(orientation:portrait) and (max-width:900px)");
 const sound = new Soundscape();
-const segmenter =
-  typeof Intl.Segmenter === "function"
-    ? new Intl.Segmenter("vi", { granularity: "grapheme" })
-    : null;
 let dialogueLine = "";
+let revealed = false;
+let requiresAction = false;
 let index = 0,
-  typing = false,
-  timer = 0,
   previousScene = "",
   handoff = false,
   lastFocus = null;
@@ -29,30 +25,31 @@ function inPortrait() {
     portrait.matches && !document.body.classList.contains("allow-portrait")
   );
 }
-function complete() {
-  clearInterval(timer);
-  typing = false;
-  stage.dataset.typing = "false";
+function updateNext() {
+  const button = $("#next");
+  button.disabled = revealed && requiresAction;
+  button.setAttribute(
+    "aria-label",
+    revealed ? "Lời thoại tiếp" : "Hiện cả câu",
+  );
+}
+function revealLine() {
+  revealed = true;
+  stage.dataset.dialogue = "shown";
   $("#line").textContent = dialogueLine;
+  $("#spoken").textContent = $("#speaker").textContent + ". " + dialogueLine;
+  updateNext();
 }
 function text(beat, full) {
   dialogueLine = beat.line.normalize("NFC");
-  complete();
   $("#speaker").textContent = beat.speaker;
-  $("#spoken").textContent = beat.speaker + ". " + dialogueLine;
-  if (full || typeMotion.matches || TYPEWRITER_MS <= 0) return;
-  const chars = segmenter
-    ? Array.from(segmenter.segment(dialogueLine), ({ segment }) => segment)
-    : dialogueLine.match(/\P{M}\p{M}*|\p{M}+/gu) || [];
-  let pos = 0;
-  $("#line").textContent = "";
-  typing = true;
-  stage.dataset.typing = "true";
-  timer = setInterval(() => {
-    pos++;
-    $("#line").textContent = chars.slice(0, pos).join("");
-    if (pos >= chars.length) complete();
-  }, TYPEWRITER_MS);
+  if (full) return revealLine();
+  revealed = false;
+  stage.dataset.dialogue = "waiting";
+  $("#line").textContent = "Chạm bên phải để đọc";
+  $("#spoken").textContent =
+    beat.speaker + ". Chọn Hiện cả câu để đọc lời thoại.";
+  updateNext();
 }
 function background(id) {
   const box = $("#backdrop"),
@@ -93,7 +90,7 @@ function render(full = false, forward = true) {
   $("#scene-count").textContent =
     String(b.number + 1).padStart(2, "0") + " / 09";
   $("#prev").disabled = index === 0;
-  $("#next").disabled = Boolean(b.action);
+  requiresAction = Boolean(b.action);
   background(b.bg);
   const key = b.scene + "|" + (b.visual || "");
   if (key !== priorVisual)
@@ -121,8 +118,8 @@ function go(i, back = false) {
 }
 function next() {
   if (modal.open || inPortrait() || (handoff && !field.talking)) return;
-  if (typing) {
-    complete();
+  if (!revealed) {
+    revealLine();
     return;
   }
   if (handoff) return field.advance();
@@ -140,7 +137,6 @@ function prev() {
   go(index - 1, true);
 }
 function toChapter() {
-  complete();
   location.assign(new URL(NEXT_CHAPTER_URL, document.baseURI).href);
 }
 function button(label, cls, fn) {
@@ -198,13 +194,12 @@ const field = new FieldGame({
   speak: text,
   cue: () => sound.note(),
   silence: () => {
-    clearInterval(timer);
-    typing = false;
-    stage.dataset.typing = "false";
+    delete stage.dataset.dialogue;
   },
   nav: (first, gated) => {
     $("#prev").disabled = first;
-    $("#next").disabled = gated;
+    requiresAction = gated;
+    updateNext();
   },
   count: (count) => {
     $("#scene-count").textContent = count + " / 6";
@@ -234,9 +229,7 @@ function route() {
   if (modal.open) closeDialog();
   const chapter = location.hash.match(/^#\/chapter-([123])$/);
   if (chapter || location.hash === "#/epilogue") {
-    clearInterval(timer);
     clearTimeout(idle);
-    typing = false;
     handoff = true;
     previousScene = "chapter";
     priorVisual = "";
@@ -263,7 +256,8 @@ stage.addEventListener("click", (e) => {
     e.target.closest("button,a,dialog")
   )
     return;
-  const rect = stage.getBoundingClientRect();
+  const surface = e.target.closest("#dialogue") || stage;
+  const rect = surface.getBoundingClientRect();
   if (e.clientX - rect.left < rect.width / 2) prev();
   else next();
 });
@@ -342,9 +336,6 @@ $("#portrait-play").addEventListener("click", () => {
 });
 portrait.addEventListener("change", orientation);
 orientation();
-typeMotion.addEventListener("change", () => {
-  if (typeMotion.matches && typing) complete();
-});
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) sound.suspend();
   else sound.enter(previousScene, false);

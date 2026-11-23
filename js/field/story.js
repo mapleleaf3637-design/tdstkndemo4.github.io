@@ -72,7 +72,7 @@ const groups = [
     "herd",
     "bg_02",
     null,
-    "el_02",
+    null,
     ["ph_01", "ph_09"],
     [
       [R, "Chúng đi cùng nhau… Con nhỏ luôn ở gần những con lớn."],
@@ -87,7 +87,7 @@ const groups = [
     "feeding",
     "bg_03",
     null,
-    "el_03",
+    null,
     ["ph_02"],
     [
       [R, "Chiếc vòi đó thật linh hoạt. Nó có thể dùng để lấy thức ăn sao?"],
@@ -102,16 +102,16 @@ const groups = [
     "bathing",
     "bg_04",
     null,
-    "el_04",
+    null,
     ["ph_03", "ph_04", "ph_05", "ph_06"],
     [
       [R, "Khoan đã… Nó đang tự phủ bùn lên người?"],
       [
         S,
         "Bên suối, một con khác đang tắm. Voi sử dụng nước, bùn và đất để làm mát và chăm sóc da.",
-        "el_05",
+        null,
       ],
-      [R, "Mình đã ghi lại ba tập tính đầu tiên rồi!", "el_05", 0],
+      [R, "Mình đã ghi lại ba tập tính đầu tiên rồi!", null, 0],
     ],
   ],
   [
@@ -238,6 +238,18 @@ const groups = [
     ],
   ],
 ];
+export const observations = {
+  herd: [["ph_01", "Đàn voi · Ấn Độ"]],
+  feeding: [["ph_02", "Kiếm ăn · Ấn Độ"]],
+  bathing: [
+    ["ph_03", "Tắm bùn · Ấn Độ"],
+    ["ph_05", "Tắm sông · Lào"],
+  ],
+};
+function observationsForBeat(place, index) {
+  const frames = observations[place];
+  return frames?.[Math.min(index, frames.length - 1)];
+}
 export const beats = groups.flatMap(
   ([chapter, place, bg, person, animal, photos, lines]) =>
     lines.map(([speaker, line, pose, award], j) => ({
@@ -251,6 +263,7 @@ export const beats = groups.flatMap(
       line,
       award,
       first: j === 0,
+      observation: observationsForBeat(place, j),
     })),
 );
 export const booths = [
@@ -262,8 +275,8 @@ export const booths = [
     start: "Bắt đầu ném",
     intro: [
       "Lại đây nào! Bạn thử tài ném vòng vào những tấm bia voi bằng bìa nhé?",
-      "Ngày trước, nghề săn voi ở Buôn Đôn có nhiều vai trò. Theo một lời kể của nghệ nhân, Băk sai là người phụ việc, học nghề trong đoàn.",
-      "Theo lời kể ấy, người phụ việc giúp bắt năm con có thể được làm lễ thành Gru. Gru toih là trưởng đoàn, gắn với thành tích từ mười con.",
+      "Ngày trước, nghề săn voi ở Buôn Đôn có nhiều vai trò. Theo lời nghệ nhân Y Khu Êban, Băk sai là người phụ việc, học nghề trong đoàn.",
+      "Theo lời kể ấy, thợ phụ giúp bắt 5 con và đủ kinh nghiệm đi rừng sẽ được làm lễ thành Gru. Gru toih là trưởng đoàn, gắn với thành tích từ mười con.",
       "Vua Voi là danh hiệu hiếm, gắn với thành tích trên sáu mươi con trong cách kể này. Đây là chuyện nghề xưa.",
       "Bạn có năm vòng và một phút. Bia càng xa càng nhỏ, chạy càng nhanh và được càng nhiều điểm. Bụi cỏ tính 0 điểm.",
     ],
@@ -292,7 +305,14 @@ export const booths = [
     ],
   },
 ];
-export const ranks = ["Băk sai", "Gru", "Gru toih", "Vua Voi"];
+// Nghệ nhân Y Khu Êban, Buôn Đôn, in “Nối dài ký ức”, Báo Đại biểu Nhân dân (2017).
+export const ranks = [
+  ["Băk sai", "Thợ phụ học nghề"],
+  ["Gru", "Giúp bắt 5 con"],
+  ["Gru toih", "Bắt từ 10 con"],
+  ["Vua Voi", "Bắt trên 60 con"],
+];
+
 export const questions = [
   [
     "Trước ngày 1/7/2025, huyện Buôn Đôn thuộc tỉnh nào?",
