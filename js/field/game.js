@@ -110,7 +110,7 @@ export class FieldGame {
     this.drag = null;
     this.aimed = false;
   }
-  render(full = false) {
+  render() {
     this.stopClock();
     this.cancelEffects();
     const s = this.s,
@@ -190,7 +190,7 @@ export class FieldGame {
           branches[b.award][0] +
           "</strong></span></div>";
       }
-      this.api.speak(b, full);
+      this.api.speak(b);
       this.api.nav(s.beat === 0, b.place === "store");
       if (b.place === "store")
         markup += control(
@@ -228,10 +228,9 @@ export class FieldGame {
       const ready = s.intro === booth.intro.length - 1;
       if (ready)
         markup += control("start", booth.start, "field-primary start-booth");
-      this.api.speak({ speaker: "Chủ sạp", line: booth.intro[s.intro] }, full);
+      this.api.speak({ speaker: "Chủ sạp", line: booth.intro[s.intro] });
       this.api.nav(s.intro === 0, ready);
     } else {
-      this.api.silence();
       if (mode === "find") markup = storehouse(s);
       if (mode === "equipment") markup = equipment(s);
       if (mode === "hub") markup = this.hub();
@@ -313,14 +312,14 @@ export class FieldGame {
       if (s.intro === 0) return;
       s.intro--;
     } else if (s.beat > 0) s.beat--;
-    this.render(true);
+    this.render();
   }
   skipDialogue() {
     if (!this.talking) return;
     const s = this.s;
     if (s.mode === "intro") {
       s.intro = booths[s.booth].intro.length - 1;
-      this.render(true);
+      this.render();
       return;
     }
     const b = beats[s.beat];
@@ -330,12 +329,12 @@ export class FieldGame {
       if (award !== undefined) unlock(s, branchIds[award]);
     }
     if (b.place === "store") {
-      this.render(true);
+      this.render();
       return;
     }
     if (s.beat === beats.length - 1) s.mode = "hub";
     else s.beat++;
-    this.render(true);
+    this.render();
   }
   act(action, value) {
     const s = this.s;

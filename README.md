@@ -4,7 +4,7 @@ A Vietnamese watercolor visual novel following a researcher from SPARK to Tây N
 
 ## Playing
 
-Open the root or `#/prologue`. Tap the right half of the dialogue once to reveal the whole line instantly and again to advance. Tap left to revisit the previous line. Booth introductions have a separate return-to-festival button. Skip or finish the Prologue to enter `#/chapter-1` at the forest. The notebook records six discoveries. The main game remembers the current scene, equipment, booth results and remaining active time on this browser. The chapter routes resume the corresponding checkpoint. Direct links to later chapters respect earned progress.
+Open the root or `#/prologue`. Each line appears in full immediately. Tap right for the next line or left for the previous one. Booth introductions have a separate return-to-festival button. Skip or finish the Prologue to enter `#/chapter-1` at the forest. The notebook records six discoveries. The main game remembers the current scene, equipment, booth results and remaining active time on this browser. The chapter routes resume the corresponding checkpoint. Direct links to later chapters respect earned progress.
 
 | Chapter | Activity |
 | --- | --- |

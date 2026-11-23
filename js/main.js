@@ -1,4 +1,4 @@
-import { FieldGame } from "./field/game.js?v=dialogue2";
+import { FieldGame } from "./field/game.js?v=dialogue3";
 import { history as beats } from "./scenes.js";
 import { paint, image, warm } from "./visuals.js";
 import { Soundscape } from "./audio.js?field1";
@@ -11,9 +11,6 @@ const stage = $("#stage"),
 const typeMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const portrait = matchMedia("(orientation:portrait) and (max-width:900px)");
 const sound = new Soundscape();
-let dialogueLine = "";
-let revealed = false;
-let requiresAction = false;
 let index = 0,
   previousScene = "",
   handoff = false,
@@ -25,31 +22,11 @@ function inPortrait() {
     portrait.matches && !document.body.classList.contains("allow-portrait")
   );
 }
-function updateNext() {
-  const button = $("#next");
-  button.disabled = revealed && requiresAction;
-  button.setAttribute(
-    "aria-label",
-    revealed ? "Lời thoại tiếp" : "Hiện cả câu",
-  );
-}
-function revealLine() {
-  revealed = true;
-  stage.dataset.dialogue = "shown";
-  $("#line").textContent = dialogueLine;
-  $("#spoken").textContent = $("#speaker").textContent + ". " + dialogueLine;
-  updateNext();
-}
-function text(beat, full) {
-  dialogueLine = beat.line.normalize("NFC");
+function text(beat) {
+  const line = beat.line.normalize("NFC");
   $("#speaker").textContent = beat.speaker;
-  if (full) return revealLine();
-  revealed = false;
-  stage.dataset.dialogue = "waiting";
-  $("#line").textContent = "Chạm bên phải để đọc";
-  $("#spoken").textContent =
-    beat.speaker + ". Chọn Hiện cả câu để đọc lời thoại.";
-  updateNext();
+  $("#line").textContent = line;
+  $("#spoken").textContent = beat.speaker + ". " + line;
 }
 function background(id) {
   const box = $("#backdrop"),
@@ -78,7 +55,7 @@ function background(id) {
   box.append(im);
   if (im.complete && im.naturalWidth) show();
 }
-function render(full = false, forward = true) {
+function render(forward = true) {
   handoff = false;
   const b = beats[index];
   const changed = previousScene !== b.scene;
@@ -90,7 +67,7 @@ function render(full = false, forward = true) {
   $("#scene-count").textContent =
     String(b.number + 1).padStart(2, "0") + " / 09";
   $("#prev").disabled = index === 0;
-  requiresAction = Boolean(b.action);
+  $("#next").disabled = Boolean(b.action);
   background(b.bg);
   const key = b.scene + "|" + (b.visual || "");
   if (key !== priorVisual)
@@ -101,7 +78,7 @@ function render(full = false, forward = true) {
       showPhoto,
     });
   priorVisual = key;
-  text(b, full);
+  text(b);
   if (changed) sound.enter(b.scene, forward);
   previousScene = b.scene;
   clearTimeout(idle);
@@ -114,14 +91,10 @@ function render(full = false, forward = true) {
 function go(i, back = false) {
   if (i < 0 || i >= beats.length) return;
   index = i;
-  render(back, !back);
+  render(!back);
 }
 function next() {
   if (modal.open || inPortrait() || (handoff && !field.talking)) return;
-  if (!revealed) {
-    revealLine();
-    return;
-  }
   if (handoff) return field.advance();
   if (beats[index].action) return;
   if (index + 1 === beats.length) {
@@ -193,13 +166,9 @@ const field = new FieldGame({
   portrait: inPortrait,
   speak: text,
   cue: () => sound.note(),
-  silence: () => {
-    delete stage.dataset.dialogue;
-  },
   nav: (first, gated) => {
     $("#prev").disabled = first;
-    requiresAction = gated;
-    updateNext();
+    $("#next").disabled = gated;
   },
   count: (count) => {
     $("#scene-count").textContent = count + " / 6";
@@ -245,7 +214,7 @@ function route() {
     index = 0;
     previousScene = "";
     priorVisual = "";
-    render(false, false);
+    render(false);
   }
 }
 stage.addEventListener("click", (e) => {

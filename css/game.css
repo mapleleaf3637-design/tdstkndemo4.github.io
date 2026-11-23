@@ -340,11 +340,6 @@ button:disabled {
   font-weight: 760;
   margin: 0 0 0.35em;
 }
-#stage[data-dialogue="waiting"] #line {
-  font-family: var(--sans);
-  font-size: clamp(14px, 1.25cqw, 19px);
-  color: #665840;
-}
 .dialogue-copy p {
   font: 500 clamp(16px, 1.92cqw, 30px) / 1.36 var(--serif);
   margin: 0;
