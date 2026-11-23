@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#272d26" />
+    <meta
+      name="description"
+      content="Hồ sơ voi thất lạc — một hành trình tương tác từ hành tinh SPARK đến Tây Nguyên, Việt Nam."
+    />
+    <title>The Lost Elephant Archive · Hồ sơ voi thất lạc</title>
+    <link rel="icon" href="./assets/shared/ui_02.webp" />
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/backgrounds/pr_bg01_spark_exterior.webp"
+      fetchpriority="high"
+    />
+    <link rel="stylesheet" href="./css/game.css" />
+  </head>
+  <body>
+    <main id="stage" tabindex="-1" aria-label="Hồ sơ voi thất lạc">
+      <div id="backdrop" aria-hidden="true"></div>
+      <div id="shade" aria-hidden="true"></div>
+      <div id="art"></div>
+      <header class="toolbar">
+        <div class="chapter-tag">
+          <span class="emblem" aria-hidden="true">✧</span
+          ><span id="chapter-label">PROLOGUE</span><i></i
+          ><span id="scene-count">01 / 09</span>
+        </div>
+        <div class="tools">
+          <button
+            id="sound"
+            type="button"
+            aria-pressed="false"
+            aria-label="Bật âm thanh"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9h4l5-4v14l-5-4H3z" />
+              <path class="sound-wave" d="M15 8q5 4 0 8m3-11q8 7 0 14" />
+              <path class="sound-off" d="m16 9 5 6m0-6-5 6" /></svg
+            ><span>SOUND</span>
+          </button>
+          <button id="skip" type="button" aria-label="Bỏ qua Prologue">
+            SKIP <span aria-hidden="true">»</span>
+          </button>
+        </div>
+      </header>
+      <section id="dialogue" aria-label="Lời thoại">
+        <div class="dialogue-surface" aria-hidden="true"></div>
+        <div class="dialogue-copy">
+          <span id="speaker"></span>
+          <p id="line" aria-hidden="true"></p>
+          <p id="spoken" class="sr" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div class="line-controls">
+          <button id="prev" type="button" aria-label="Lời thoại trước">‹</button
+          ><button id="next" type="button" aria-label="Lời thoại tiếp">
+            ›
+          </button>
+        </div>
+      </section>
+      <div id="tap-hint" aria-hidden="true">
+        Chạm bên trái để lùi <span>·</span> Chạm bên phải để tiếp
+      </div>
+    </main>
+    <div id="rotate">
+      <img src="./assets/shared/ui_02.webp" alt="" />
+      <h2>Xoay ngang điện thoại</h2>
+      <p>Bạn sẽ nhìn trọn khung cảnh và đọc lời thoại dễ hơn.</p>
+      <button id="portrait-play" class="action">Tiếp tục ở chế độ dọc</button>
+    </div>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <div id="modal-body"></div>
+      <button id="modal-close" class="close" aria-label="Đóng">×</button>
+    </dialog>
+    <noscript>Vui lòng bật JavaScript để chơi Hồ sơ voi thất lạc.</noscript>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
