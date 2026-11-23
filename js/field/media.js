@@ -522,8 +522,7 @@ export const media = {
 };
 export const photos = {
   vn_01: {
-    caption:
-      "Bờ sông trong Vườn quốc gia Yok Đôn. Tư liệu tham chiếu màu nước, thảm cây bờ sông và bố cục viền P3-03.",
+    caption: "Dòng sông và thảm cây ven bờ ở Vườn quốc gia Yok Đôn, Đắk Lắk.",
     credit: "Yokdon01.JPG • Đỗ Tuấn Hưng (Dotuanhungdaklak)",
     license: "CC BY-SA 3.0",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -531,7 +530,7 @@ export const photos = {
   },
   vn_02: {
     caption:
-      "Nài voi M’nông gần hồ Lắk. Nài voi ngồi trên voi nhà gần hồ Lắk, Đắk Lắk. Ảnh dùng cho câu chuyện về người làm nghề và voi nhà.",
+      "Một nài voi M’nông ngồi trên lưng voi nhà gần hồ Lắk, Đắk Lắk. Bức ảnh ghi lại mối quan hệ giữa người làm nghề và voi nhà.",
     credit:
       "Mnong mahout.jpg • Rdavout (Renaud d’Avout d’Auerstaedt và/hoặc Hélène Gauche, theo trang nguồn)",
     license: "CC BY-SA 3.0",
@@ -539,8 +538,7 @@ export const photos = {
     url: "https://commons.wikimedia.org/wiki/File:Mnong_mahout.jpg",
   },
   vn_03: {
-    caption:
-      "Lễ hội cồng chiêng tại Đắk Lắk. Ảnh toàn cảnh sân khấu của một lễ hội cồng chiêng. Dùng cho bối cảnh sự kiện, không dùng để nhận dạng từng nhạc cụ.",
+    caption: "Sân khấu của một lễ hội cồng chiêng ở Đắk Lắk.",
     credit: "Congchieng01.JPG • Đỗ Tuấn Hưng (Dotuanhungdaklak)",
     license: "CC BY-SA 3.0",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
@@ -548,7 +546,7 @@ export const photos = {
   },
   ph_01: {
     caption:
-      "Đàn voi ở Ấn Độ. Một đàn voi châu Á đứng cùng nhau. Dùng cho mục tập tính xã hội.",
+      "Một đàn voi châu Á ở Ấn Độ. Hãy để ý khoảng cách giữa các con khi chúng đứng thành đàn.",
     credit: "Asian Elephant herd.jpg • Drashokk",
     license: "CC BY-SA 4.0",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -556,7 +554,7 @@ export const photos = {
   },
   ph_02: {
     caption:
-      "Voi kiếm ăn ở Tamil Nadu, Ấn Độ. Ảnh chụp gần khu dân cư ở Masinagudi, có người đứng gần voi. Dùng cho hành vi kiếm ăn.",
+      "Một con voi châu Á kiếm ăn ở Masinagudi, bang Tamil Nadu, Ấn Độ. Hãy quan sát vị trí của vòi bên đám lá.",
     credit: "Wild Asian Elephant feeding DSCN1057 03.jpg • Rohitjahnavi",
     license: "CC BY-SA 4.0",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -564,7 +562,7 @@ export const photos = {
   },
   ph_03: {
     caption:
-      "Voi nhà chơi bùn ở Kerala, Ấn Độ. Chú thích gốc xác định đây là voi nhà. Đặt ảnh trong mục tìm hiểu tập tính của loài.",
+      "Một con voi nhà chơi bùn ở bang Kerala, Ấn Độ. Bùn bám lên chân và da khi voi cọ mình.",
     credit:
       "Domesticated Asian Elephant playing in mud in Kerala IndiaDSC5270.jpg • Bobinson",
     license: "CC BY-SA 4.0",
@@ -572,8 +570,7 @@ export const photos = {
     url: "https://commons.wikimedia.org/wiki/File:Domesticated_Asian_Elephant_playing_in_mud_in_Kerala_IndiaDSC5270.jpg",
   },
   ph_04: {
-    caption:
-      "Đàn voi tại Nagarahole, Ấn Độ. Đàn voi tắm bùn theo chú thích của tác giả.",
+    caption: "Những con voi cùng tắm bùn tại Nagarahole, Ấn Độ.",
     credit: "Herd of Asian Elephants bathing.jpg • Sanjeevrs2000",
     license: "CC BY-SA 4.0",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -581,7 +578,7 @@ export const photos = {
   },
   ph_05: {
     caption:
-      "Voi tắm sông Tad Lo, Lào. Cá thể voi châu Á ngồi trong nước, phù hợp để so sánh hành vi tắm sông.",
+      "Một con voi châu Á ngồi trong nước khi tắm trên sông Tad Lo ở Lào.",
     credit:
       "Sitting Asian elephant (Elephas maximus) bathing in Tad Lo river, Laos.jpg • Basile Morin",
     license: "CC BY-SA 4.0",
@@ -590,7 +587,7 @@ export const photos = {
   },
   ph_06: {
     caption:
-      "Voi tắm bụi ở Thái Lan. Tại Elephant Nature Park. Dùng cho động tác tung đất khô.",
+      "Một con voi tung đất khô lên thân ở Elephant Nature Park, Thái Lan. Đây là hành vi tắm bụi.",
     credit: "Asian Elephant Dust Bathing.jpg • Alexander Klink",
     license: "CC BY 4.0",
     licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
@@ -598,7 +595,7 @@ export const photos = {
   },
   ph_07: {
     caption:
-      "Voi ở vườn thú Hellabrunn, Đức. Ảnh nhận dạng loài tại München. Cảnh quan là môi trường nuôi giữ.",
+      "Voi châu Á trong khu nuôi giữ của vườn thú Hellabrunn ở München, Đức.",
     credit: "Elephas-maximus.jpg • MartinThoma",
     license: "CC0 1.0",
     licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -606,15 +603,14 @@ export const photos = {
   },
   ph_08: {
     caption:
-      "Chăm sóc voi ở cơ sở cứu hộ WFFT, Thái Lan. Ảnh có người tắm cho voi. Quy trình này thuộc cơ sở trong ảnh.",
+      "Một người chăm sóc đang tắm cho voi tại cơ sở cứu hộ WFFT ở Thái Lan.",
     credit: "Wildlife Friends Foundation Thailand 7.jpg • Mx. Granger",
     license: "CC0 1.0",
     licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
     url: "https://commons.wikimedia.org/wiki/File:Wildlife_Friends_Foundation_Thailand_7.jpg",
   },
   ph_09: {
-    caption:
-      "Voi non ở vườn thú Melbourne, Úc. Voi non trong bể nước. Dùng để so sánh, ghi rõ địa điểm nuôi giữ.",
+    caption: "Voi non trong bể nước của vườn thú Melbourne, Úc.",
     credit: "Elephant-Melbourne-Zoo-20070224-064.jpg • Gary Houston",
     license: "CC0 1.0",
     licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
