@@ -232,6 +232,25 @@ button:disabled {
 #sound[aria-pressed="true"] .sound-wave {
   display: inline;
 }
+/* Full-screen toggle (js/fullscreen.js) */
+#fullscreen[hidden],
+#rotate-fullscreen[hidden] {
+  display: none;
+}
+#fullscreen {
+  padding: 0;
+  justify-content: center;
+}
+#fullscreen .fs-exit,
+#fullscreen[aria-pressed="true"] .fs-enter {
+  display: none;
+}
+#fullscreen[aria-pressed="true"] .fs-exit {
+  display: inline;
+}
+#rotate-fullscreen {
+  margin-bottom: 10px;
+}
 .tools #skip {
   position: relative;
 }

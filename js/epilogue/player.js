@@ -2,6 +2,7 @@ import { scenes, comparisons, comparisonClosing, choices } from "./story.js";
 import { epAssets } from "./assets.js";
 import { bg, preload, view } from "./view.js";
 import { PREVIEW_URL } from "../config.js?v=spark";
+import { readProgress, writeProgress } from "../storage.js";
 
 const steps = [];
 for (const [scene, chapter] of scenes.entries()) {
@@ -46,7 +47,7 @@ const fresh = () => ({
 });
 function restore(key) {
   try {
-    const raw = JSON.parse(localStorage.getItem(key));
+    const raw = readProgress(key);
     if (!raw || !Number.isInteger(raw.cursor) || !steps[raw.cursor])
       return fresh();
     const valid = (value) =>
@@ -125,10 +126,7 @@ export class Epilogue {
     clearTimeout(this.hold);
   }
   save() {
-    if (!this.gate)
-      try {
-        localStorage.setItem(this.key, JSON.stringify(this.s));
-      } catch {}
+    if (!this.gate) writeProgress(this.key, this.s);
   }
   go(cursor, full = false) {
     if (!steps[cursor]) return;

@@ -419,7 +419,10 @@ export class FieldGame {
           });
         break;
       case "open-store":
-        s.mode = s.found === 2 ? "equipment" : "find";
+        // Always search the storehouse from the start, even on a revisit.
+        // The earned notebook page stays; only the search is replayed.
+        s.found = 0;
+        s.mode = "find";
         break;
       case "find":
         if (value !== ["p1_01", "p1_02"][s.found]) {

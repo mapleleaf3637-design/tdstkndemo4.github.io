@@ -7,6 +7,16 @@
       content="width=device-width,initial-scale=1,viewport-fit=cover"
     />
     <meta name="theme-color" content="#272d26" />
+    <!-- Full screen when opened from the phone's home screen -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Hồ sơ voi" />
+    <link rel="apple-touch-icon" href="./assets/shared/icon-192.png" />
     <meta
       name="description"
       content="Hồ sơ voi thất lạc — một hành trình tương tác từ hành tinh SPARK đến Tây Nguyên, Việt Nam."
@@ -26,7 +36,7 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="./css/game.css?v=spark" />
+    <link rel="stylesheet" href="./css/game.css?v=spark3" />
     <link rel="stylesheet" href="./css/field.css?v=spark" />
     <link rel="stylesheet" href="./css/epilogue.css?v=spark2" />
   </head>
@@ -42,6 +52,18 @@
           ><span id="scene-count">01 / 09</span>
         </div>
         <div class="tools">
+          <button
+            id="fullscreen"
+            type="button"
+            aria-pressed="false"
+            aria-label="Toàn màn hình"
+            hidden
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path class="fs-enter" d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" />
+              <path class="fs-exit" d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" />
+            </svg>
+          </button>
           <button
             id="sound"
             type="button"
@@ -78,6 +100,9 @@
       <img src="./assets/shared/ui_02.webp" alt="" />
       <h2>Xoay ngang điện thoại</h2>
       <p>Bạn sẽ nhìn trọn khung cảnh và đọc lời thoại dễ hơn.</p>
+      <button id="rotate-fullscreen" class="action" type="button" hidden>
+        Toàn màn hình (ẩn thanh trình duyệt)
+      </button>
       <button id="portrait-play" class="action">Tiếp tục ở chế độ dọc</button>
     </div>
     <dialog id="modal" aria-labelledby="modal-title">
@@ -85,6 +110,6 @@
       <button id="modal-close" class="close" aria-label="Đóng">×</button>
     </dialog>
     <noscript>Vui lòng bật JavaScript để chơi Hồ sơ voi thất lạc.</noscript>
-    <script type="module" src="./js/main.js?v=spark"></script>
+    <script type="module" src="./js/main.js?v=spark3"></script>
   </body>
 </html>

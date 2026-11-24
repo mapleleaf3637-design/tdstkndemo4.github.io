@@ -7,7 +7,9 @@ import {
   EPILOGUE_URL,
   PREVIEW_URL,
 } from "./config.js?v=spark";
-import { currentChapter } from "./field/state.js?v=spark";
+import { currentChapter, freshState } from "./field/state.js?v=spark";
+import { resetProgress } from "./storage.js";
+import { setupFullscreen } from "./fullscreen.js";
 import { Epilogue } from "./epilogue/player.js";
 const $ = (s) => document.querySelector(s);
 const stage = $("#stage"),
@@ -288,6 +290,10 @@ function route() {
     field.start(Number(chapter[1]));
   } else {
     if (field.active) field.leave();
+    // Opening the Prologue starts a brand-new playthrough: forget every
+    // chapter, booth and Epilogue record from earlier plays.
+    resetProgress();
+    field.s = freshState();
     stage.classList.remove("field-active");
     delete stage.dataset.mode;
     $("#field-book").hidden = true;
@@ -398,5 +404,21 @@ try {
     $("#sound").setAttribute("aria-label", "Tắt âm thanh");
   }
 } catch {}
+setupFullscreen({
+  button: $("#fullscreen"),
+  rotateButton: $("#rotate-fullscreen"),
+  help: (title, lines) => {
+    openDialog(title);
+    modal.dataset.kind = "skip";
+    for (const line of lines) {
+      const p = document.createElement("p");
+      p.textContent = line;
+      body.append(p);
+    }
+    body.append(button("Đã hiểu", "action", closeDialog));
+    $("#modal-close").focus();
+  },
+  changed: orientation,
+});
 window.addEventListener("hashchange", route);
 route();

@@ -1,5 +1,6 @@
 import { beats, branchIds } from "./story.js?v=spark";
 import { EPILOGUE_URL } from "../config.js?v=spark";
+import { readProgress, writeProgress } from "../storage.js";
 const KEY = "tdstkndemo4:field:v1";
 export function freshState() {
   return {
@@ -25,7 +26,7 @@ export function freshState() {
 export function loadState() {
   const base = freshState();
   try {
-    const s = JSON.parse(localStorage.getItem(KEY));
+    const s = readProgress(KEY);
     if (!s || !Array.isArray(s.unlocked)) return base;
     const modes = [
       "story",
@@ -56,11 +57,7 @@ export function loadState() {
   }
 }
 export function saveState(s) {
-  try {
-    localStorage.setItem(KEY, JSON.stringify(s));
-  } catch {
-    /* Session play remains available. */
-  }
+  writeProgress(KEY, s);
 }
 export function unlock(s, id) {
   if (!s.unlocked.includes(id)) s.unlocked.push(id);
