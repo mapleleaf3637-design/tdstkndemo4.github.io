@@ -1,5 +1,5 @@
-import { assetUrl, media, photos } from "./media.js";
-import { branches, branchIds } from "./story.js";
+import { assetUrl, media, photos } from "./media.js?v=spark";
+import { branches, branchIds } from "./story.js?v=spark";
 export const pad = (n) => String(n).padStart(2, "0");
 export const escapeText = (s) =>
   String(s).replace(

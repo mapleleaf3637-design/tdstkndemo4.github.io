@@ -1,4 +1,5 @@
 import { asset } from "./assets.js";
+import { epAssets } from "./epilogue/assets.js";
 export class Soundscape {
   constructor() {
     this.on = false;
@@ -24,9 +25,18 @@ export class Soundscape {
   enter(scene, forward) {
     if (!this.on) return;
     this.effect.pause();
+    if (scene === "transmission") {
+      this.bed.pause();
+      this.effect.src = epAssets["EP-AU02"];
+      this.play(this.effect);
+      return;
+    }
     if (["P7", "P8", "chapter"].includes(scene)) this.bed.pause();
     else {
-      if (!this.bed.src) this.bed.src = asset("PR-AU01");
+      const bed = /^E[0-7]$/.test(scene)
+        ? epAssets[scene === "E7" ? "EP-AU03" : "EP-AU01"]
+        : asset("PR-AU01");
+      if (this.bed.src !== bed) this.bed.src = bed;
       this.play(this.bed);
     }
     const id = scene === "P3" ? "PR-AU02" : scene === "P8" ? "PR-AU03" : null;

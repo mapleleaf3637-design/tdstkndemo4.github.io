@@ -1,5 +1,5 @@
-import { pic, control, pad, panel } from "./ui.js";
-import { orders, questions, branches } from "./story.js";
+import { pic, control, pad, panel } from "./ui.js?v=spark";
+import { orders, questions, branches } from "./story.js?v=spark";
 export const lanes = [
   { score: 20, count: 1, size: 6, speed: 2.8 },
   { score: 10, count: 3, size: 8, speed: 4 },

@@ -8,17 +8,24 @@ import {
   questions,
   ranks,
   titles,
-} from "./story.js?v=dialogue2";
-import { assetUrl, media } from "./media.js";
+} from "./story.js?v=spark";
+import { assetUrl, media } from "./media.js?v=spark";
 import {
   currentChapter,
   epilogueDestination,
   loadState,
   saveState,
   unlock,
-} from "./state.js";
-import { control, notebook, pad, panel, photoPage, pic } from "./ui.js";
-import { equipment, quiz, results, rope, shop, storehouse } from "./games.js";
+} from "./state.js?v=spark";
+import { control, notebook, pad, panel, photoPage, pic } from "./ui.js?v=spark";
+import {
+  equipment,
+  quiz,
+  results,
+  rope,
+  shop,
+  storehouse,
+} from "./games.js?v=spark";
 
 export class FieldGame {
   constructor(api) {
@@ -75,9 +82,7 @@ export class FieldGame {
     this.active = true;
     const s = this.s,
       chapter = currentChapter(s);
-    if (request === "epilogue" && s.unlocked.length === 6) {
-      s.mode = "final";
-    } else if (
+    if (
       request === 1 &&
       (chapter !== 1 || (wasActive === false && s.mode === "final"))
     ) {
@@ -110,7 +115,7 @@ export class FieldGame {
     this.drag = null;
     this.aimed = false;
   }
-  render() {
+  render(full = false) {
     this.stopClock();
     this.cancelEffects();
     const s = this.s,
@@ -190,7 +195,7 @@ export class FieldGame {
           branches[b.award][0] +
           "</strong></span></div>";
       }
-      this.api.speak(b);
+      this.api.speak(b, full);
       this.api.nav(s.beat === 0, b.place === "store");
       if (b.place === "store")
         markup += control(
@@ -214,21 +219,28 @@ export class FieldGame {
       if (s.booth === 0 && s.intro > 0 && s.intro < 4)
         markup +=
           '<div class="rank-sheet">' +
-          pic("p2_05") +
-          "<div>" +
           ranks
             .map(
-              ([name, milestone]) =>
-                "<span><b>" + name + "</b><em>" + milestone + "</em></span>",
+              ([name, milestone], i) =>
+                '<div><img alt="" src="' +
+                new URL(
+                  "../../assets/field/rank-" + i + ".webp",
+                  import.meta.url,
+                ).href +
+                '"><b>' +
+                name +
+                "</b><em>" +
+                milestone +
+                "</em></div>",
             )
             .join("") +
-          "</div></div>";
+          "</div>";
       if (s.booth === 1) markup += pic("p3_01", "intro-board");
       if (s.booth === 2) markup += pic("p4_11", "intro-board");
       const ready = s.intro === booth.intro.length - 1;
       if (ready)
         markup += control("start", booth.start, "field-primary start-booth");
-      this.api.speak({ speaker: "Chủ sạp", line: booth.intro[s.intro] });
+      this.api.speak({ speaker: "Chủ sạp", line: booth.intro[s.intro] }, full);
       this.api.nav(s.intro === 0, ready);
     } else {
       if (mode === "find") markup = storehouse(s);
@@ -312,14 +324,14 @@ export class FieldGame {
       if (s.intro === 0) return;
       s.intro--;
     } else if (s.beat > 0) s.beat--;
-    this.render();
+    this.render(true);
   }
   skipDialogue() {
     if (!this.talking) return;
     const s = this.s;
     if (s.mode === "intro") {
       s.intro = booths[s.booth].intro.length - 1;
-      this.render();
+      this.render(true);
       return;
     }
     const b = beats[s.beat];
@@ -329,12 +341,12 @@ export class FieldGame {
       if (award !== undefined) unlock(s, branchIds[award]);
     }
     if (b.place === "store") {
-      this.render();
+      this.render(true);
       return;
     }
     if (s.beat === beats.length - 1) s.mode = "hub";
     else s.beat++;
-    this.render();
+    this.render(true);
   }
   act(action, value) {
     const s = this.s;

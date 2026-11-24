@@ -207,26 +207,21 @@
 }
 .rank-sheet {
   position: absolute;
-  left: 35%;
-  right: var(--m);
-  top: var(--playtop);
-  bottom: calc(var(--scene-bottom) + 1cqh);
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  border-radius: 12px;
-  padding: 1% 1.5%;
-}
-.rank-sheet img {
-  height: 100%;
-  width: 100%;
-  min-height: 0;
-}
-.rank-sheet div {
+  left: 64%;
+  top: calc((100% + var(--playtop) - var(--scene-bottom)) / 2);
+  transform: translate(-50%, -50%);
+  width: min(55cqw, 665px);
+  padding: clamp(7px, 1.45cqh, 14px) clamp(8px, 1cqw, 18px);
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   text-align: center;
-  align-items: start;
-  gap: 0.25em;
+  border-radius: 12px;
+}
+.rank-sheet img {
+  display: block;
+  height: clamp(60px, 24cqh, 175px);
+  max-width: 92%;
+  margin: 0 auto 0.65cqh;
 }
 .rank-sheet b,
 .rank-sheet em {
@@ -1025,9 +1020,8 @@
     font-size: 12px;
   }
   .rank-sheet {
-    left: 24%;
-    right: 2%;
-    top: calc(var(--playtop) + 46px);
+    left: 55%;
+    width: 86cqw;
   }
   .behavior-photo {
     max-width: 92%;

@@ -1,6 +1,5 @@
-import { beats, branchIds } from "./story.js";
-export const EPILOGUE_URL =
-  "https://mapleleaf3637-design.github.io/tdstkndemo3.github.io/#/epilogue";
+import { beats, branchIds } from "./story.js?v=spark";
+import { EPILOGUE_URL } from "../config.js?v=spark";
 const KEY = "tdstkndemo4:field:v1";
 export function freshState() {
   return {
@@ -74,24 +73,5 @@ export function currentChapter(s) {
       : 3;
 }
 export function epilogueDestination(s) {
-  if (!branchIds.every((id) => s.unlocked.includes(id))) return null;
-  // The two Pages projects share an origin. Export earned evidence to demo3's documented gate.
-  try {
-    const key = "lost-elephant-archive:v1";
-    const old = JSON.parse(localStorage.getItem(key) || "{}") || {};
-    const union = (a, b) => [
-      ...new Set([...(Array.isArray(a) ? a : []), ...b]),
-    ];
-    localStorage.setItem(
-      key,
-      JSON.stringify({
-        ...old,
-        unlockedBranches: union(old.unlockedBranches, branchIds),
-        completedStages: union(old.completedStages, ["stage-1", "stage-2"]),
-      }),
-    );
-    return EPILOGUE_URL;
-  } catch {
-    return EPILOGUE_URL + "-preview";
-  }
+  return branchIds.every((id) => s.unlocked.includes(id)) ? EPILOGUE_URL : null;
 }

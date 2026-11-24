@@ -9,3 +9,6 @@ export const ARCHIVE_BRANCHES = [
   "Văn hóa",
   "Kinh tế",
 ];
+
+export const EPILOGUE_URL = "#/epilogue";
+export const PREVIEW_URL = "#/epilogue-preview";

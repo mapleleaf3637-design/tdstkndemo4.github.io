@@ -73,9 +73,12 @@ const groups = [
     "bg_02",
     null,
     null,
-    ["ph_01", "ph_09"],
+    ["vn_04"],
     [
-      [R, "Chúng đi cùng nhau… Con nhỏ luôn ở gần những con lớn."],
+      [
+        R,
+        "Hai con voi nhà đứng sát bên nhau. Trong rừng, voi cũng thường sống thành đàn sao?",
+      ],
       [
         S,
         "Đàn gia đình của voi châu Á thường gồm voi cái và voi con, dưới sự dẫn dắt của một voi cái trưởng thành.",
@@ -88,7 +91,7 @@ const groups = [
     "bg_03",
     null,
     null,
-    ["ph_02"],
+    ["vn_05"],
     [
       [R, "Chiếc vòi đó thật linh hoạt. Nó có thể dùng để lấy thức ăn sao?"],
       [
@@ -103,12 +106,12 @@ const groups = [
     "bg_04",
     null,
     null,
-    ["ph_03", "ph_04", "ph_05", "ph_06"],
+    ["vn_06", "vn_07"],
     [
-      [R, "Khoan đã… Nó đang tự phủ bùn lên người?"],
+      [R, "Khi lội qua chỗ nước sâu, nó vẫn giữ đầu ở trên mặt nước."],
       [
         S,
-        "Bên suối, một con khác đang tắm. Voi sử dụng nước, bùn và đất để làm mát và chăm sóc da.",
+        "Voi có thể lội và bơi. Chúng còn tắm nước, tắm bùn để làm mát và chăm sóc da.",
         null,
       ],
       [R, "Mình đã ghi lại ba tập tính đầu tiên rồi!", null, 0],
@@ -120,7 +123,7 @@ const groups = [
     "bg_05",
     "ch_03",
     "el_01",
-    ["ph_08", "vn_02", "ph_07"],
+    ["vn_02", "vn_05"],
     [
       [D, "Chào bạn! Đi một mình trong rừng từ sáng sớm à?"],
       [R, "Chào anh, tôi là nhà nghiên cứu. Tôi đang tìm hiểu về loài voi."],
@@ -239,11 +242,11 @@ const groups = [
   ],
 ];
 export const observations = {
-  herd: [["ph_01", "Đàn voi · Ấn Độ"]],
-  feeding: [["ph_02", "Kiếm ăn · Ấn Độ"]],
+  herd: [["vn_04", "Voi nhà · Bản Đôn, Đắk Lắk"]],
+  feeding: [["vn_05", "Voi nhà kiếm ăn · Đắk Lắk"]],
   bathing: [
-    ["ph_03", "Tắm bùn · Ấn Độ"],
-    ["ph_05", "Tắm sông · Lào"],
+    ["vn_06", "Voi nhà lội nước · Yok Đôn"],
+    ["vn_07", "Voi nhà lội nước · Hồ Lắk"],
   ],
 };
 function observationsForBeat(place, index) {

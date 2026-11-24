@@ -1,4 +1,25 @@
 export const media = {
+  vn_04: {
+    url: "vn_04.webp",
+    title: "Voi nhà đứng cạnh nhau ở Bản Đôn",
+    source:
+      "https://commons.wikimedia.org/wiki/File:Voi_%E1%BB%9F_B%E1%BA%A3n_%C4%90%C3%B4n.jpg",
+  },
+  vn_05: {
+    url: "vn_05.webp",
+    title: "Voi nhà dùng vòi lấy thức ăn ở Đắk Lắk",
+    source: "https://www.inaturalist.org/observations/259316574",
+  },
+  vn_06: {
+    url: "vn_06.webp",
+    title: "Voi nhà lội nước ở Yok Đôn",
+    source: "https://commons.wikimedia.org/wiki/File:Yokdon02.JPG",
+  },
+  vn_07: {
+    url: "vn_07.webp",
+    title: "Voi nhà giữa hồ Lắk",
+    source: "https://commons.wikimedia.org/wiki/File:Holak02.JPG",
+  },
   bg_13: {
     url: "bg_13.webp",
     title: "Phòng nghiên cứu SPARK",
@@ -521,6 +542,38 @@ export const media = {
   },
 };
 export const photos = {
+  vn_04: {
+    caption:
+      "Hai con voi nhà đứng gần nhau ở Bản Đôn, Đắk Lắk. Tác giả ghi nhận chúng được dùng để chở khách khi chụp ảnh năm 2010.",
+    credit: "Voi ở Bản Đôn.jpg • Bùi Thụy Đào Nguyên",
+    license: "CC BY-SA 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    url: "https://commons.wikimedia.org/wiki/File:Voi_%E1%BB%9F_B%E1%BA%A3n_%C4%90%C3%B4n.jpg",
+  },
+  vn_05: {
+    caption:
+      "Voi châu Á dùng vòi đưa thực vật lên miệng ở Đắk Lắk, tháng 1 năm 2025. Người quan sát ghi nhận đây là voi nhà.",
+    credit: "Ảnh 465474094, quan sát 259316574 • Hirako San (iNaturalist)",
+    license: "CC BY-NC-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    url: "https://www.inaturalist.org/observations/259316574",
+  },
+  vn_06: {
+    caption:
+      "Một con voi nhà đang lội nước tại Vườn quốc gia Yok Đôn, Đắk Lắk. Trên lưng voi có người và bành.",
+    credit: "Yokdon02.JPG • Đỗ Tuấn Hưng (Dotuanhungdaklak)",
+    license: "CC BY-SA 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    url: "https://commons.wikimedia.org/wiki/File:Yokdon02.JPG",
+  },
+  vn_07: {
+    caption:
+      "Hai con voi nhà lội qua hồ Lắk, Đắk Lắk. Ảnh tư liệu năm 2005 ghi lại hoạt động chở khách lúc bấy giờ.",
+    credit: "Holak02.JPG • Đỗ Tuấn Hưng (Dotuanhungdaklak)",
+    license: "CC BY-SA 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    url: "https://commons.wikimedia.org/wiki/File:Holak02.JPG",
+  },
   vn_01: {
     caption: "Dòng sông và thảm cây ven bờ ở Vườn quốc gia Yok Đôn, Đắk Lắk.",
     credit: "Yokdon01.JPG • Đỗ Tuấn Hưng (Dotuanhungdaklak)",
