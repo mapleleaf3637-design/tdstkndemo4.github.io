@@ -101,5 +101,42 @@ Tested locally at 844×390 and 375×812:
   six objects.
 - No console errors.
 
-Status: committed locally in
-`Materials\Epilogue\tdstkndemo4-repo`; **push with GitHub Desktop**.
+Status: pushed by the user (commit `f616db3`).
+
+## Step 11 — Claude, 2026-11-24 — (commit after `f616db3`)
+
+Request (user, phone screenshots + a visual-novel reference image):
+(a) no fullscreen button visible on the phone; (b) the speech-box texture
+overlaps the speaker name/text on phones — remove it; (c) characters hang
+off the side of the screen (phone and PC). Put every character in the middle,
+big, with part of the body under the text box; when another visual or
+character appears, slide them left/right smoothly while staying big.
+
+Findings: (a) GitHub Pages had not yet published `f616db3` when the user
+looked (the live page still served `main.js?v=spark`); nothing wrong in code.
+
+Changed:
+- `css/game.css`: `.dialogue-surface` is now a plain paper gradient (no
+  `ui_08.webp`).
+- **New `js/actor.js`** + `setupActors(stage, art)` in `js/main.js`: one
+  persistent `#actors` layer (behind scene content and the dialogue box,
+  clipped at the box's bottom edge). It mirrors the character `<img>` each
+  renderer outputs, hides the original via CSS, and positions a big sprite
+  (`height: 118cqh; top: 12cqh`) at centre / 21 % / 79 % with a 0.7 s
+  `left` transition; sprite changes cross-fade. Side rules: alone → centre;
+  any `COMPANIONS` visual present → left; chapter-title openings
+  (`.opening-person`) → right; `data-side` on the img overrides.
+  Uses a MutationObserver + microtask (no requestAnimationFrame, so it also
+  works in throttled/background tabs).
+- `css/field.css`, `css/epilogue.css`: `#stage[data-actor="left"]` rules
+  move the photo, rank panel, animals, Epilogue title/map/terminal/saved
+  panel to the right half. "Về sân hội" moved to the centre of the top bar.
+- `index.html`: all assets `?v=spark4`.
+
+Tested locally (844×390 and 1366×768): Prologue P1 centred, P2/P3 slide
+left beside hologram/signal, back-navigation returns to centre; Chapter 1
+opening on the right of the title, Đăm Săn big on the left beside the
+elephant; Chapter 3 stall owner left of the rank panel; Epilogue E0 and E6
+left of their panels; no console errors.
+
+Status: committed locally; push with GitHub Desktop.

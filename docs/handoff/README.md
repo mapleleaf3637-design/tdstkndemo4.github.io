@@ -44,6 +44,7 @@ archive, and returns home for the Epilogue.
 | `js/main.js` | Router, typewriter dialogue (`text()`), left/right tap navigation, modal, sound, Epilogue/field wiring. |
 | `js/storage.js` | **All progress saving.** `sessionStorage` only; `resetProgress()`; deletes old `localStorage` saves on load. |
 | `js/fullscreen.js` | Phone full-screen toggle + "Add to Home Screen" help fallback. |
+| `js/actor.js` | **Shared character layer.** Shows every character big, centred and cut off by the dialogue box; slides it left (or right) when another visual is on screen. Edit `COMPANIONS` there to change which visuals push the character aside. CSS: `.actor` / `#actors` in `css/game.css`; `#stage[data-actor="left"]` rules at the end of `css/field.css` and `css/epilogue.css`. |
 | `manifest.webmanifest` | Home-screen app: `display: fullscreen`, landscape, icons in `assets/shared/icon-*.png`. |
 | `js/scenes.js`, `js/visuals.js`, `js/assets.js`, `css/game.css` | Prologue. |
 | `js/field/story.js` | Chapter 1–3 dialogue, booth intros, quiz, shop orders, rank table (`ranks`). |
@@ -72,8 +73,15 @@ archive, and returns home for the Epilogue.
 - **Progress must not survive closing the browser** (user requirement,
   2026-11-24). Never write progress to `localStorage`; use `js/storage.js`.
 - Paths are relative (`./…`) so they work under the Pages subdirectory.
+- Characters are drawn **only** by `js/actor.js`. Renderers keep emitting
+  their `<img class="character|field-person|ep-person">`; CSS hides it and the
+  actor layer shows it. Do not re-position those classes in CSS — change
+  `.actor` / `data-side` instead. Keep characters big, centred when alone,
+  lower body behind the dialogue box (user requirement, 2026-11-24).
+- The dialogue box is plain paper colour; do not put the `ui_08` texture back
+  (its curl covered the speaker name on phones).
 - When you change a JS/CSS file that browsers may cache, bump the `?v=` query
-  in `index.html` (currently `main.js?v=spark3`, `game.css?v=spark3`).
+  in `index.html` (currently `spark4` for `main.js` and all three CSS files).
 
 ## 5. How to run locally
 

@@ -4,8 +4,12 @@ Update this list whenever you finish or discover something.
 
 ## To do now
 
-- [ ] **Push** the local commits (steps 9–10 in `WORK_LOG.md`) with GitHub
-      Desktop, then open the live site with `?v=new` and check:
+- [ ] **Push** the step-11 commit with GitHub Desktop. Then on a phone check
+      the big centred characters and the slide when a photo/panel appears,
+      in all three parts (Prologue, chapters, Epilogue). Watch for any panel
+      that still overlaps the character; fix by adding a
+      `#stage[data-actor="left"] .that-panel { left: … }` rule.
+- [ ] After the deploy, also check (step 10 features):
       - Toolbar shows the ⛶ button; on Android Chrome it hides the address
         bar and turns the screen sideways.
       - On iPhone Safari the button shows the "Add to Home Screen" help;

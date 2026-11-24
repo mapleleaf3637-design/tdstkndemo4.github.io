@@ -446,3 +446,19 @@
     transform: translateY(-2%);
   }
 }
+
+/* Shared character layer (js/actor.js): keep panels clear of the character
+   standing on the left. */
+#stage[data-actor="left"] .ep-title {
+  left: 47%;
+}
+#stage[data-actor="left"] #epilogue > .ep-map {
+  left: 50%;
+}
+#stage[data-actor="left"] .ep-terminal,
+#stage[data-actor="left"] .ep-ribbons {
+  left: 50%;
+}
+#stage[data-actor="left"] .ep-saved {
+  left: 43%;
+}

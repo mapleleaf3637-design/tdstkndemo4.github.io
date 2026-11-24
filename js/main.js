@@ -10,6 +10,7 @@ import {
 import { currentChapter, freshState } from "./field/state.js?v=spark";
 import { resetProgress } from "./storage.js";
 import { setupFullscreen } from "./fullscreen.js";
+import { setupActors } from "./actor.js";
 import { Epilogue } from "./epilogue/player.js";
 const $ = (s) => document.querySelector(s);
 const stage = $("#stage"),
@@ -404,6 +405,7 @@ try {
     $("#sound").setAttribute("aria-label", "Tắt âm thanh");
   }
 } catch {}
+setupActors(stage, art);
 setupFullscreen({
   button: $("#fullscreen"),
   rotateButton: $("#rotate-fullscreen"),

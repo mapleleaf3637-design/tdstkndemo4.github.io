@@ -193,10 +193,13 @@
   height: 33%;
   bottom: calc(var(--scene-bottom) + 8cqh);
 }
+/* Centred in the top bar so it never covers the big character (js/actor.js). */
 .leave-intro {
   position: absolute;
-  top: var(--playtop);
-  left: var(--m);
+  top: var(--top);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
   min-height: 44px;
   padding: 0.4em 1em;
   border: 1px solid #a58b63;
@@ -1081,4 +1084,21 @@
 }
 .final-book {
   background: #faf0dc url("../assets/field/bg_14.webp") center/cover;
+}
+
+/* Shared character layer (js/actor.js): when the character stands on the
+   left, keep the scene's own visual on the right half. */
+#stage[data-actor="left"] .behavior-photo {
+  left: 64%;
+  max-width: 62%;
+}
+#stage[data-actor="left"] .rank-sheet {
+  left: 69%;
+  width: min(52cqw, 640px);
+}
+#stage[data-actor="left"] .field-animal.paired {
+  left: 44%;
+}
+#stage[data-actor="left"] .care-supplies {
+  left: 40%;
 }

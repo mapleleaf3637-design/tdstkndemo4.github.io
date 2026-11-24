@@ -337,15 +337,70 @@ button:disabled {
   box-shadow: 0 3px 15px #42341e4d;
   isolation: isolate;
 }
+/* Plain paper tone. The painted ui_08 texture was removed because its curled
+   corner ran through the speaker name on phones. */
 .dialogue-surface {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   z-index: -1;
-  background:
-    linear-gradient(90deg, #f5e7cdb3, transparent 30%, #f5e7cdb3),
-    url("../assets/shared/ui_08.webp") center 60%/160% 150% no-repeat;
-  opacity: 0.83;
+  background: linear-gradient(180deg, #fbf2df, #f2e3c4);
+}
+#dialogue {
+  background: #f5e8ce;
+}
+
+/* ---- Shared character layer (js/actor.js) ---- */
+#art img.character,
+#art img.field-person,
+#art img.ep-person {
+  display: none !important;
+}
+/* Ends at the bottom edge of the dialogue box, so the lower body is hidden
+   behind the box instead of peeking out underneath it. */
+#actors {
+  position: absolute;
+  inset: 0 0 var(--foot);
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+.actor {
+  position: absolute;
+  top: var(--actor-top, 12cqh);
+  left: 50%;
+  height: 118cqh;
+  width: auto;
+  max-width: 62cqw;
+  object-fit: contain;
+  object-position: center top;
+  transform: translate(-50%, 2.5cqh);
+  opacity: 0;
+  filter: drop-shadow(0 4px 7px #3d2f1f38);
+  transition:
+    left 0.7s cubic-bezier(0.33, 0, 0.2, 1),
+    opacity 0.35s ease,
+    transform 0.45s ease;
+  will-change: left, opacity;
+}
+.actor.in {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.actor.out {
+  opacity: 0;
+}
+.actor[data-side="left"] {
+  left: 21%;
+}
+.actor[data-side="right"] {
+  left: 79%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .actor {
+    transition: opacity 0.15s linear;
+    transform: translate(-50%, 0);
+  }
 }
 .dialogue-copy {
   flex: 1;
