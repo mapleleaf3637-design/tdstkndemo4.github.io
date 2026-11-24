@@ -812,38 +812,93 @@
 .customer-thanks {
   font-style: italic;
 }
-#modal[data-kind="notebook"],
-#modal[data-kind="field-photo"] {
+#modal[data-kind="notebook"] {
   width: min(90vw, 900px);
   max-height: 93dvh;
   overflow: auto;
 }
+/* Documentary photo viewer. The photo is shown on its own (the old notebook
+   frame ui_09 behind it made the photo look pasted on top of a drawing).
+   Landscape: photo left, caption + credit + page buttons right, so the whole
+   viewer fits one phone screen without scrolling. */
+#modal[data-kind="field-photo"] {
+  width: min(94vw, 980px);
+  max-width: 94vw;
+  max-height: 94dvh;
+  overflow: auto;
+  padding: clamp(12px, 3vmin, 30px);
+}
+#modal[data-kind="field-photo"] h2 {
+  font-size: clamp(17px, 3.4vmin, 28px);
+  margin: 0 44px 0.5em 0;
+}
+#modal[data-kind="field-photo"] .field-modal-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "photo caption"
+    "photo meta"
+    "photo pages";
+  gap: 0.5em clamp(12px, 2.4vw, 26px);
+  align-items: start;
+}
 .field-photo {
-  margin: 0;
-  text-align: center;
+  display: contents;
 }
 .field-photo img {
+  grid-area: photo;
+  justify-self: center;
   display: block;
-  width: 100%;
-  height: min(45dvh, 360px);
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(94dvh - 6.5em);
   object-fit: contain;
-  background: #ecdcbf url("../assets/field/ui_09.webp") center/100% 100%;
-  padding: 1.2%;
+  border: 3px solid #fdf1dd;
+  border-radius: 8px;
+  box-shadow: 0 3px 12px #3a2c1a40;
+  background: #e9dcc2;
 }
 .field-photo figcaption,
 .photo-meta {
-  font-size: clamp(12px, 2.2vmin, 16px);
-  line-height: 1.35;
-  margin: 0.4em auto;
+  font-size: clamp(12px, 2.3vmin, 16px);
+  line-height: 1.4;
+  margin: 0;
+  text-align: left;
+}
+.field-photo figcaption {
+  grid-area: caption;
+  font-weight: 600;
+}
+.photo-meta {
+  grid-area: meta;
+  color: #5b4d3a;
+  font-size: clamp(11px, 2vmin, 14px);
 }
 .photo-meta a {
   color: #316044;
 }
 .photo-pages {
+  grid-area: pages;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
+  align-self: end;
+}
+/* Portrait phones / narrow windows: stack photo, then text. */
+@media (max-width: 600px) {
+  #modal[data-kind="field-photo"] .field-modal-content {
+    grid-template-columns: 1fr;
+    grid-template-areas: "photo" "caption" "meta" "pages";
+  }
+  .field-photo img {
+    max-height: 50dvh;
+  }
+  .photo-pages {
+    justify-content: center;
+  }
 }
 .photo-pages button {
   min-width: 44px;

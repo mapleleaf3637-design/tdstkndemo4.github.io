@@ -153,3 +153,20 @@ Save. Pages then built `fa3b259`; verified live: `main.js?v=spark4`,
 ⛶ button present, researcher big and centred on Prologue P1, plain box.
 
 Status: done. `gh-pages` branch is stale and can be deleted later.
+
+## Step 13 — Claude, 2026-11-24 — documentary photo viewer on phones
+
+Request (user, phone screenshot, Vietnamese): "phần ảnh tư liệu trên điện
+thoại đang bị lỗi" — in Chapter 1 the photo viewer showed the photo pasted
+over the notebook-frame drawing (`ui_09.webp`), the title was huge and the
+dialog was taller than the screen (page buttons cut off).
+
+Changed `css/field.css` (`#modal[data-kind="field-photo"]` block):
+- Removed the `ui_09` frame background; the photo has a simple paper border.
+- Landscape layout as a grid: photo on the left, caption / credit / page
+  buttons (‹ 1/2 ›) on the right; smaller title. Fits a 780×360 phone screen
+  without scrolling. Below 600 px wide it stacks vertically.
+- `index.html`: `field.css?v=spark5`.
+
+Tested: 780×360 (single photo and the 2-photo "Nài voi M’nông" gallery,
+next button works, no scrolling) and 1366×768.
