@@ -185,6 +185,14 @@ export class Epilogue {
           ].join("-")
         : null;
     if (!key || key !== this.lastView) {
+      // Re-rendering the same interactive sheet (e.g. selecting a card) must
+      // not replay the entry fade, otherwise the whole panel blinks out.
+      const sheet = key ? null : mode + "-" + s.pair;
+      this.root.classList.toggle(
+        "ep-steady",
+        !!sheet && sheet === this.lastSheet,
+      );
+      this.lastSheet = sheet;
       const focused = this.root.contains(document.activeElement)
         ? { ...document.activeElement.dataset }
         : null;

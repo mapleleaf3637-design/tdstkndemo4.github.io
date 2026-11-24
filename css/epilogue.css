@@ -401,6 +401,25 @@
   .ep-choices .ep-card[aria-pressed="true"] {
     transform: translateY(-2px);
   }
+  .ep-steady .ep-sheet {
+    animation: none;
+  }
+}
+/* Final-message choice: lift the selected card with a gold/sage glow and dim
+   the others slightly without marking them as wrong. */
+.ep-choices .ep-card {
+  transition:
+    opacity 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+.ep-choices .ep-card[aria-pressed="true"] {
+  box-shadow:
+    0 0 0 2px #c59a58,
+    0 6px 18px rgba(83, 107, 81, 0.35);
+}
+.ep-choices .ep-cards:has([aria-pressed="true"]) .ep-card[aria-pressed="false"] {
+  opacity: 0.72;
 }
 @keyframes ep-appear {
   from {
