@@ -139,4 +139,17 @@ opening on the right of the title, Đăm Săn big on the left beside the
 elephant; Chapter 3 stall owner left of the rank panel; Epilogue E0 and E6
 left of their panels; no console errors.
 
-Status: committed locally; push with GitHub Desktop.
+Status: pushed (`fa3b259`) and live.
+
+## Step 12 — Claude + user, 2026-11-24 — deployment fix
+
+Problem: after pushing steps 10–11 the live site still showed the old
+version on phone and PC. Cause: GitHub Pages was publishing from the
+`gh-pages` branch (stuck at `541da34`, created by ChatGPT), not `main`, so
+pushes to `main` never triggered a Pages build.
+
+Fix (user, in GitHub Settings → Pages): Branch `main`, folder `/ (root)`,
+Save. Pages then built `fa3b259`; verified live: `main.js?v=spark4`,
+⛶ button present, researcher big and centred on Prologue P1, plain box.
+
+Status: done. `gh-pages` branch is stale and can be deleted later.

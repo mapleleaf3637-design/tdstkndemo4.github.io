@@ -106,7 +106,13 @@ Testing tips:
 
 ## 6. How to deploy
 
-Commit to `main` and push; GitHub Pages serves the root of `main`. Wait
+Commit to `main` and push; GitHub Pages serves the root of `main`
+(Settings → Pages → "Deploy from a branch" → `main` / `(root)`, set on
+2026-11-24). **Do not push to the old `gh-pages` branch** — it is stale
+(`541da34`) and no longer published. Earlier, Pages was set to `gh-pages`,
+so pushes to `main` silently never went live; if the live site ever lags,
+compare the commit in the Actions tab's latest "pages build and deployment"
+run with `git log -1 origin/main`. Wait
 1–3 minutes, then open the live URL with a cache-buster (`?v=xyz`) and check
 for console errors.
 
