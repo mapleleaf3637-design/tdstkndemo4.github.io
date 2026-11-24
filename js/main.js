@@ -11,7 +11,7 @@ import { currentChapter, freshState } from "./field/state.js?v=spark";
 import { resetProgress } from "./storage.js";
 import { setupFullscreen } from "./fullscreen.js";
 import { setupActors } from "./actor.js";
-import { Epilogue } from "./epilogue/player.js";
+import { Epilogue } from "./epilogue/player.js?v=spark6";
 const $ = (s) => document.querySelector(s);
 const stage = $("#stage"),
   art = $("#art"),

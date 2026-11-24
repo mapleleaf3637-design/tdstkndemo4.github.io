@@ -170,3 +170,20 @@ Changed `css/field.css` (`#modal[data-kind="field-photo"]` block):
 
 Tested: 780×360 (single photo and the 2-photo "Nài voi M’nông" gallery,
 next button works, no scrolling) and 1366×768.
+## Step 14 — Claude, 2026-11-24 — "Chơi lại từ đầu" on the Epilogue ending
+
+Request (user): on the final Epilogue screen, replace "Trở lại trò chơi"
+with a button that restarts the whole game from the Prologue.
+
+Changed:
+- `js/epilogue/view.js`: ending screen and the "Thông điệp đã được lưu giữ"
+  screen now show `button("restart", "Chơi lại từ đầu")` instead of
+  "Trở lại trò chơi". (The 0–5/6 gate screen keeps "Tiếp tục trò chơi".)
+- `js/epilogue/player.js` `act("restart")`: `location.hash = "#/prologue"`;
+  entering the Prologue already wipes all session progress (step 10).
+- Cache busting: `main.js` imports `./epilogue/player.js?v=spark6`,
+  `player.js` imports `./view.js?v=spark6`, `index.html` `main.js?v=spark6`.
+
+Tested: ending shows "Chơi lại Epilogue | Chơi lại từ đầu | Kết thúc";
+the restart button lands on Prologue 01/09 with field and Epilogue session
+keys removed.

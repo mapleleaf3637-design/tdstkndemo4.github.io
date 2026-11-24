@@ -1,6 +1,6 @@
 import { scenes, comparisons, comparisonClosing, choices } from "./story.js";
 import { epAssets } from "./assets.js";
-import { bg, preload, view } from "./view.js";
+import { bg, preload, view } from "./view.js?v=spark6";
 import { PREVIEW_URL } from "../config.js?v=spark";
 import { readProgress, writeProgress } from "../storage.js";
 
@@ -273,6 +273,13 @@ export class Epilogue {
   act(action, value) {
     const s = this.s;
     if (action === "return") return this.api.resume();
+    // "Chơi lại từ đầu": go to the Prologue. Entering the Prologue wipes all
+    // chapter and Epilogue progress (js/main.js route()), so this is a clean
+    // new playthrough.
+    if (action === "restart") {
+      location.hash = "#/prologue";
+      return;
+    }
     if (action === "preview" && this.gate) {
       location.hash = PREVIEW_URL;
       return;

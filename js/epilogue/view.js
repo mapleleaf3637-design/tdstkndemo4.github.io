@@ -250,7 +250,7 @@ export function view(step, s, mode, wrong, count) {
         "</strong>" +
         actions(
           button("replay", "Chơi lại Epilogue", true),
-          button("return", "Trở lại trò chơi"),
+          button("restart", "Chơi lại từ đầu"),
           button("finish", "Kết thúc", true),
         ) +
         "</section>"
@@ -259,7 +259,7 @@ export function view(step, s, mode, wrong, count) {
       return (
         '<section class="ep-sheet ep-gate"><small>THE LOST ELEPHANT ARCHIVE</small><h1>Thông điệp đã được lưu giữ.</h1><p>Cảm ơn bạn đã đồng hành cùng hành trình về voi Tây Nguyên.</p>' +
         actions(
-          button("return", "Trở lại trò chơi"),
+          button("restart", "Chơi lại từ đầu"),
           button("replay", "Chơi lại Epilogue", true),
         ) +
         "</section>"
