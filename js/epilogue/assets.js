@@ -1,4 +1,4 @@
-import { asset } from "../assets.js";
+import { asset } from "../assets.js?v=spark7";
 
 const url = (file) =>
   new URL("../../assets/epilogue/" + file, import.meta.url).href;

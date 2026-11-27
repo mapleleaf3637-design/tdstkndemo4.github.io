@@ -1,5 +1,5 @@
-import { asset, ASSETS } from "./assets.js";
-import { ARCHIVE_BRANCHES } from "./config.js";
+import { asset, ASSETS } from "./assets.js?v=spark7";
+import { ARCHIVE_BRANCHES } from "./config.js?v=spark7";
 const node = (tag, cls, text) => {
   const el = document.createElement(tag);
   el.className = cls;
@@ -32,13 +32,13 @@ export const evidence = {
     id: "PR-PH01",
     title: "Voi ở Tây Nguyên",
     caption:
-      "Chuyên đề tại Bảo tàng Dân tộc học Việt Nam, Hà Nội. Ảnh thực địa của nhóm.",
+      "Pano giới thiệu trưng bày chuyên đề “Voi ở Tây Nguyên” tại Bảo tàng Dân tộc học Việt Nam, Hà Nội. Ảnh thực địa của nhóm.",
   },
   collection: {
     id: "PR-PH02",
     title: "Bộ vật dụng của Ama Kông",
     caption:
-      "Hiện vật được con trai Ama Kông trao tặng bảo tàng năm 2014. Ảnh thực địa của nhóm.",
+      "Hiện vật do ông Khăm Phết Lào, con trai Ama Kông, trao tặng bảo tàng từ năm 2014. Ảnh thực địa của nhóm.",
   },
 };
 const signals = {
@@ -152,10 +152,19 @@ export function paint(art, b, actions) {
       node("h2", "", "RESTORE THE ELEPHANT ARCHIVE"),
       node("p", "", "6 KNOWLEDGE BRANCHES TO DISCOVER"),
     );
-    const btn = node("button", "action", "BẮT ĐẦU HÀNH TRÌNH");
+    // Call-to-action (feedback 2026-11-27): big button with a pulsing glow,
+    // an arrow inside and a bouncing pointer above it.
+    const btn = node("button", "action mission-start");
     btn.type = "button";
+    btn.append(
+      node("span", "", "BẮT ĐẦU HÀNH TRÌNH"),
+      node("span", "cta-arrow", "➜"),
+    );
+    btn.lastChild.setAttribute("aria-hidden", "true");
     btn.addEventListener("click", actions.accept);
-    card.append(btn);
+    const pointer = node("span", "cta-pointer", "▼");
+    pointer.setAttribute("aria-hidden", "true");
+    card.append(pointer, btn);
     group.append(card);
   } else if (v === "portal") {
     add("PR-OB09", "portal");

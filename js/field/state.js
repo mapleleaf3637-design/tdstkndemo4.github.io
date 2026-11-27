@@ -1,5 +1,5 @@
-import { beats, branchIds } from "./story.js?v=spark";
-import { EPILOGUE_URL } from "../config.js?v=spark";
+import { beats, branchIds } from "./story.js?v=spark7";
+import { EPILOGUE_URL } from "../config.js?v=spark7";
 import { readProgress, writeProgress } from "../storage.js";
 const KEY = "tdstkndemo4:field:v1";
 export function freshState() {

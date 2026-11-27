@@ -36,3 +36,10 @@ Update this list whenever you finish or discover something.
   Skip goes checkpoint to checkpoint.
 - The E4 personalized reflection is skipped when the player presses Skip
   after the choice; it could be shown on the E6 screen as well.
+
+## From the team feedback (2026-11-27)
+
+- [ ] Chapter 1 herd photo: replace `vn_04` with the team's own photo of an
+      Asian elephant herd moving in Tây Nguyên if they have one (none with a
+      reusable licence exists online). Add it to `js/field/media.js` and
+      `assets/field/CREDITS.txt`.

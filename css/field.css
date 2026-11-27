@@ -329,56 +329,77 @@
 #field .field-caption p {
   margin: 0.12em 0;
 }
+/* Storehouse search (feedback 2026-11-27): objects were small and blended
+   into the brown storeroom on phones. They are now larger and sit on a soft
+   cream halo with a stronger shadow. */
 .store-objects {
   position: absolute;
-  inset: 31% 8% 22%;
+  inset: 29% 3% 21%;
 }
 .store-item {
   position: absolute;
   border: 0;
-  background: none;
-  min-width: 44px;
-  min-height: 44px;
-  width: 19%;
-  height: 50%;
-  padding: 1%;
-  border-radius: 14px;
+  min-width: 56px;
+  min-height: 56px;
+  width: 22%;
+  height: 54%;
+  padding: 1.2%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    #fff8e6f2 0%,
+    #fff1d2c8 55%,
+    #fff1d200 100%
+  );
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
 }
 .store-item img {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 3px 2px #36281359);
+  filter: drop-shadow(0 4px 4px #2b1d0c80) saturate(1.15) contrast(1.05);
 }
 .store-item:focus-visible,
 .store-item:hover {
-  background: #ffebaf55;
+  background: radial-gradient(
+    closest-side,
+    #fff6cff7 0%,
+    #ffe7a3d9 60%,
+    #ffe7a300 100%
+  );
+  transform: scale(1.06);
+}
+.store-item:active {
+  transform: scale(0.97);
 }
 .store-item:disabled {
   opacity: 0.3;
 }
 .obj-0 {
-  left: 3%;
-  top: 2%;
+  left: 1%;
+  top: 0%;
 }
 .obj-1 {
-  left: 63%;
+  left: 77%;
   top: 0%;
 }
 .obj-2 {
-  left: 38%;
+  left: 39%;
   top: 0%;
 }
 .obj-3 {
-  left: 22%;
-  top: 53%;
+  left: 13%;
+  top: 46%;
 }
 .obj-4 {
-  left: 48%;
-  top: 53%;
+  left: 52%;
+  top: 46%;
 }
 .obj-5 {
-  left: 78%;
-  top: 50%;
+  left: 82%;
+  top: 46%;
+  width: 17%;
 }
 .item-cards {
   inset: var(--playtop) 12% var(--foot);
@@ -738,26 +759,39 @@
 .answers .incorrect {
   background: #ecd0bc;
 }
+/* Souvenir designs (feedback 2026-11-27): bigger on phones — wider row,
+   less padding, and the A/B/C badge floats in the corner so the picture
+   uses the whole card. */
 .products {
   position: absolute;
-  top: 20%;
-  bottom: 31%;
-  left: 13%;
-  width: 74%;
-  gap: 4%;
+  top: calc(var(--playtop) + 6px);
+  bottom: calc(var(--scene-bottom) - 1cqh);
+  left: max(4%, var(--m));
+  right: max(4%, var(--m));
+  width: auto;
+  gap: 2.5%;
 }
 .products button {
-  width: 31%;
+  position: relative;
+  flex: 1 1 0;
+  width: auto;
   height: 100%;
+  padding: 0.25em;
 }
 .products img {
   flex: 1;
   width: 100%;
+  height: 100%;
   min-height: 0;
+  object-fit: contain;
 }
 .products b {
-  flex-shrink: 0;
-  margin: 0.1em 0;
+  position: absolute;
+  left: 0.45em;
+  bottom: 0.45em;
+  margin: 0;
+  font-size: clamp(13px, 1.6cqw, 22px);
+  box-shadow: 0 1px 3px #0005;
 }
 .order-caption {
   display: flex;
@@ -1156,4 +1190,14 @@
 }
 #stage[data-actor="left"] .care-supplies {
   left: 40%;
+}
+/* Speaker colours outside the dialogue box (match #speaker[data-who]). */
+.order-caption small {
+  color: #a0335b !important;
+}
+.owner-copy small {
+  color: #0f6b63 !important;
+}
+.store-objects + .field-caption small {
+  color: #6c3f86 !important;
 }

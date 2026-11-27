@@ -86,9 +86,10 @@ export const ASSETS = {
     file: "pr_ob09_portal_ring.png",
     url: "assets/props/pr_ob09_portal_ring.webp",
   },
+  // Replaced 2026-11-27 (feedback): the team's photo of the exhibition pano.
   "PR-PH01": {
-    file: "pr_ph01_vme_elephant_display.jpg",
-    url: "assets/photos/pr_ph01_vme_elephant_display.webp",
+    file: "pr_ph01_voi_tay_nguyen_pano.jpg",
+    url: "assets/photos/pr_ph01_voi_tay_nguyen_pano.jpg",
   },
   "PR-PH02": {
     file: "pr_ph02_real_ama_kong_objects.jpg",

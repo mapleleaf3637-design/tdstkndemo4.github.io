@@ -1,4 +1,4 @@
-import { asset } from "./assets.js";
+import { asset } from "./assets.js?v=spark7";
 import { epAssets } from "./epilogue/assets.js";
 export class Soundscape {
   constructor() {

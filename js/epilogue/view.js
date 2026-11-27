@@ -7,7 +7,7 @@ import {
   comparisons,
   choices,
 } from "./story.js";
-import { ARCHIVE_BRANCHES } from "../config.js?v=spark";
+import { ARCHIVE_BRANCHES } from "../config.js?v=spark7";
 const img = (id, cls = "", alt = "") =>
   '<img draggable="false" class="' +
   cls +

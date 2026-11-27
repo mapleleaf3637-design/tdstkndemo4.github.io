@@ -55,9 +55,15 @@ export function setupActors(stage, art) {
     img.dataset.side = where;
   };
   const leave = (img) => {
+    if (img.classList.contains("out")) return;
     img.classList.remove("in");
     img.classList.add("out");
     setTimeout(() => img.remove(), 700);
+  };
+  // Fade out every sprite except `keep`. Guards against fast tapping, where
+  // an older sprite could finish decoding late and stay on screen.
+  const clearExcept = (keep) => {
+    for (const other of [...layer.children]) if (other !== keep) leave(other);
   };
   const decide = (person) => {
     if (person.dataset.side) return person.dataset.side;
@@ -70,7 +76,7 @@ export function setupActors(stage, art) {
     const person = [...art.querySelectorAll(PERSON)].find((p) => !p.hidden);
     if (!person) {
       stage.dataset.actor = "none";
-      if (current) leave(current);
+      clearExcept(null);
       current = null;
       return;
     }
@@ -80,6 +86,7 @@ export function setupActors(stage, art) {
     if (current && current.dataset.src === src) {
       place(current, target);
       side = target;
+      clearExcept(current);
       return;
     }
     const img = new Image();
@@ -97,14 +104,13 @@ export function setupActors(stage, art) {
     current = img;
     side = target;
     const show = () => {
-      if (!img.isConnected) return;
+      // Only the newest sprite may appear; a superseded one stays hidden.
+      if (img !== current || !img.isConnected) return;
       void img.offsetWidth; // commit the start position so the move animates
       img.classList.add("in");
-      place(img, img === current ? side : target);
-      if (old) {
-        place(old, side);
-        leave(old);
-      }
+      place(img, side);
+      if (old?.isConnected) place(old, side);
+      clearExcept(img);
     };
     if (img.decode) img.decode().then(show, show);
     else show();

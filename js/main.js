@@ -1,17 +1,17 @@
-import { FieldGame } from "./field/game.js?v=spark";
-import { history as beats } from "./scenes.js";
-import { paint, image, warm } from "./visuals.js";
-import { Soundscape } from "./audio.js?v=spark";
+import { FieldGame } from "./field/game.js?v=spark7";
+import { history as beats } from "./scenes.js?v=spark7";
+import { paint, image, warm } from "./visuals.js?v=spark7";
+import { Soundscape } from "./audio.js?v=spark7";
 import {
   NEXT_CHAPTER_URL,
   EPILOGUE_URL,
   PREVIEW_URL,
-} from "./config.js?v=spark";
-import { currentChapter, freshState } from "./field/state.js?v=spark";
+} from "./config.js?v=spark7";
+import { currentChapter, freshState } from "./field/state.js?v=spark7";
 import { resetProgress } from "./storage.js";
 import { setupFullscreen } from "./fullscreen.js";
-import { setupActors } from "./actor.js";
-import { Epilogue } from "./epilogue/player.js?v=spark6";
+import { setupActors } from "./actor.js?v=spark7";
+import { Epilogue } from "./epilogue/player.js?v=spark7";
 const $ = (s) => document.querySelector(s);
 const stage = $("#stage"),
   art = $("#art"),
@@ -48,10 +48,28 @@ function finishTyping() {
   $("#next").disabled = gated;
   return true;
 }
+// Each speaker gets its own name colour (css/game.css, #speaker[data-who]).
+const SPEAKERS = [
+  ["người dẫn chuyện", "narrator"],
+  ["nhà nghiên cứu", "researcher"],
+  ["đăm săn", "damsan"],
+  ["già làng", "elder"],
+  ["chủ sạp", "seller"],
+  ["hệ thống", "system"],
+  ["sổ tay", "notebook"],
+  ["khách", "customer"],
+];
+function speakerKey(name) {
+  const n = String(name || "")
+    .normalize("NFC")
+    .toLowerCase();
+  return SPEAKERS.find(([k]) => n.startsWith(k))?.[1] || "other";
+}
 function text(beat, full = false) {
   finishTyping();
   lineText = beat.line.normalize("NFC");
   $("#speaker").textContent = beat.speaker;
+  $("#speaker").dataset.who = speakerKey(beat.speaker);
   $("#spoken").textContent = beat.speaker + ". " + lineText;
   if (full || typeMotion.matches) {
     $("#line").textContent = lineText;

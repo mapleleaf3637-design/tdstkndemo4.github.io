@@ -7,9 +7,9 @@ export const scenes = [
     id: "P0",
     bg: "PR-BG01",
     beats: [
-      n("Ở một thế giới xa xôi, có một hành tinh mang tên SPARK.", "title"),
+      n("Tại một vũ trụ song song, có một hành tinh mang tên SPARK.", "title"),
       n(
-        "Năm 2060. Tại đây, nhiều loài sinh vật chỉ còn tồn tại trong những kho dữ liệu cũ.",
+        "Thời điểm hiện tại là năm 2060. Tại hành tinh này, nhiều loài sinh vật chỉ còn tồn tại trong những kho dữ liệu cũ.",
         "title",
       ),
     ],
@@ -20,7 +20,7 @@ export const scenes = [
     character: "PR-CH01",
     beats: [
       n(
-        "Bạn là một nhà sinh vật học, chuyên nghiên cứu những loài sinh vật đã biến mất.",
+        "Bạn là một nhà sinh vật học làm việc tại SPARK, chuyên nghiên cứu những loài sinh vật đã biến mất.",
       ),
       n(
         "Công việc của bạn là thu thập, giải mã và lưu giữ những dấu vết cuối cùng của chúng.",
@@ -76,11 +76,14 @@ export const scenes = [
         "map",
       ),
       n(
-        "Tại Bảo tàng Dân tộc học Việt Nam, khu trưng bày “Voi ở Tây Nguyên” lưu giữ những hiện vật, hình ảnh và câu chuyện về mối quan hệ đặc biệt ấy.",
+        "Năm 2017, Bảo tàng Dân tộc học Việt Nam mở trưng bày chuyên đề “Voi ở Tây Nguyên”, giới thiệu những hiện vật, hình ảnh và câu chuyện về mối quan hệ đặc biệt ấy.",
         "exhibit",
       ),
+      // Fact-checked 2026-11-27: Nhân Dân and Báo Quốc tế (2017) — most objects
+      // are the tools of Y Prông Êban "Ama Kông" (1910–2012), given by his son
+      // Khăm Phết Lào from 2014.
       n(
-        "Trong số đó có bộ vật dụng của ông Y Prông Êban, thường được biết đến với tên Ama Kông, do con trai ông trao tặng bảo tàng năm 2014.",
+        "Phần lớn hiện vật là bộ đồ nghề săn và thuần dưỡng voi của ông Y Prông Êban (1910–2012), thường được biết đến với tên Ama Kông, do con trai ông là ông Khăm Phết Lào trao tặng bảo tàng từ năm 2014.",
         "collection",
       ),
     ],

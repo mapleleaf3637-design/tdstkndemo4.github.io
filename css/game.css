@@ -414,6 +414,31 @@ button:disabled {
   font-weight: 760;
   margin: 0 0 0.35em;
 }
+/* Speaker name colours (feedback 2026-11-27), set by js/main.js speakerKey(). */
+#speaker[data-who="narrator"] {
+  color: #4f5f47;
+}
+#speaker[data-who="researcher"] {
+  color: #a3461f;
+}
+#speaker[data-who="damsan"] {
+  color: #245f8c;
+}
+#speaker[data-who="elder"] {
+  color: #6c3f86;
+}
+#speaker[data-who="seller"] {
+  color: #0f6b63;
+}
+#speaker[data-who="system"] {
+  color: #7a5a12;
+}
+#speaker[data-who="notebook"] {
+  color: #5e6420;
+}
+#speaker[data-who="customer"] {
+  color: #a0335b;
+}
 .dialogue-copy p {
   font: 500 clamp(16px, 1.92cqw, 30px) / 1.36 var(--serif);
   margin: 0;
@@ -1036,6 +1061,69 @@ button:disabled {
   }
   .mission .action {
     bottom: 5.6%;
+  }
+}
+/* "BẮT ĐẦU HÀNH TRÌNH" call to action: large, glowing, with arrows. */
+.mission .mission-start {
+  min-width: 70%;
+  min-height: max(52px, 11cqh);
+  gap: 0.6em;
+  padding: 0.55em 1.4em;
+  font-size: clamp(15px, 2.1cqw, 24px);
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  border: 2px solid #f3dc9b;
+  box-shadow:
+    0 0 0 0 #e7c3628c,
+    0 4px 12px #2f3d2a55;
+  z-index: 2;
+}
+.cta-arrow {
+  display: inline-block;
+  font-size: 1.15em;
+}
+.cta-pointer {
+  position: absolute;
+  left: 50%;
+  bottom: calc(6% + max(52px, 11cqh) + 0.4em);
+  transform: translateX(-50%);
+  color: #b07a1e;
+  font-size: clamp(16px, 2.4cqw, 28px);
+  line-height: 1;
+  text-shadow: 0 1px 0 #fff6dd;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mission .mission-start {
+    animation: cta-pulse 1.6s ease-out infinite;
+  }
+  .cta-arrow {
+    animation: cta-nudge 1s ease-in-out infinite;
+  }
+  .cta-pointer {
+    animation: cta-bounce 1s ease-in-out infinite;
+  }
+}
+@keyframes cta-pulse {
+  0% {
+    box-shadow:
+      0 0 0 0 #e7c362b3,
+      0 4px 12px #2f3d2a55;
+  }
+  100% {
+    box-shadow:
+      0 0 0 14px #e7c36200,
+      0 4px 12px #2f3d2a55;
+  }
+}
+@keyframes cta-nudge {
+  50% {
+    transform: translateX(5px);
+  }
+}
+@keyframes cta-bounce {
+  50% {
+    transform: translate(-50%, -6px);
   }
 }
 @media (prefers-reduced-motion: no-preference) {

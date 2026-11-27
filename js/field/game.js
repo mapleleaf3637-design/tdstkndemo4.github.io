@@ -8,24 +8,25 @@ import {
   questions,
   ranks,
   titles,
-} from "./story.js?v=spark";
-import { assetUrl, media } from "./media.js?v=spark";
+} from "./story.js?v=spark7";
+import { assetUrl, media } from "./media.js?v=spark7";
 import {
   currentChapter,
   epilogueDestination,
   loadState,
   saveState,
   unlock,
-} from "./state.js?v=spark";
-import { control, notebook, pad, panel, photoPage, pic } from "./ui.js?v=spark";
+} from "./state.js?v=spark7";
+import { control, notebook, pad, panel, photoPage, pic } from "./ui.js?v=spark7";
 import {
+  ROPE_THROWS,
   equipment,
   quiz,
   results,
   rope,
   shop,
   storehouse,
-} from "./games.js?v=spark";
+} from "./games.js?v=spark7";
 
 export class FieldGame {
   constructor(api) {
@@ -216,7 +217,9 @@ export class FieldGame {
       markup =
         pic(booth.npc, "field-person") +
         control("leave-intro", "Về sân hội", "leave-intro");
-      if (s.booth === 0 && s.intro > 0 && s.intro < 4)
+      // Rank table: shown while the stall owner explains the four ranks
+      // (intro lines 2–4 after the "trò chơi mô phỏng" line was added).
+      if (s.booth === 0 && s.intro > 1 && s.intro < 5)
         markup +=
           '<div class="rank-sheet">' +
           ranks
@@ -683,7 +686,8 @@ export class FieldGame {
       s.score += points;
       if (points) this.api.cue();
       if (hit?.classList.contains("rope-target")) hit.classList.add("knocked");
-      this.root.querySelector("#throws").textContent = 5 - s.throws + "/5";
+      this.root.querySelector("#throws").textContent =
+        ROPE_THROWS - s.throws + "/" + ROPE_THROWS;
       this.root.querySelector("#score").textContent = s.score;
       this.root.querySelector("#rope-feedback").textContent =
         (points >= 10
@@ -693,8 +697,8 @@ export class FieldGame {
             : hit
               ? "Trúng bụi cỏ, 0 điểm."
               : "Vòng rơi ngoài bia, 0 điểm.") +
-        (s.throws === 4 ? " Còn một lượt cuối!" : "");
-      if (s.throws === 5) {
+        (s.throws === ROPE_THROWS - 1 ? " Còn một lượt cuối!" : "");
+      if (s.throws === ROPE_THROWS) {
         this.finish();
         return;
       }

@@ -187,3 +187,56 @@ Changed:
 Tested: ending shows "Chơi lại Epilogue | Chơi lại từ đầu | Kết thúc";
 the restart button lands on Prologue 01/09 with field and Epilogue session
 keys removed.
+## Step 15 — Claude, 2026-11-27 — team feedback document (Feedback.docx)
+
+Source: `Game\Feedback.docx` (18 items with screenshots), outside the repo.
+
+Dialogue / content
+- Prologue `js/scenes.js`: P0-1 "Tại một vũ trụ song song, có một hành tinh
+  mang tên SPARK."; P0-2 "Thời điểm hiện tại là năm 2060. Tại hành tinh
+  này, …"; P1-1 "Bạn là một nhà sinh vật học làm việc tại SPARK, …".
+- Fact check P4 (sources: nhandan.vn "Trưng bày voi ở Tây Nguyên",
+  baoquocte.vn "Nghe con trai vua voi kể chuyện"): "Voi ở Tây Nguyên" is a
+  themed exhibition opened in 2017 (not a permanent "khu trưng bày");
+  most objects are the tools of Y Prông Êban "Ama Kông" (1910–2012), given
+  by his son Khăm Phết Lào from 2014. P4-4 / P4-5 and the photo captions in
+  `js/visuals.js` were rewritten accordingly.
+- PR-PH01 now uses the team's photo of the exhibition pano
+  (`assets/photos/pr_ph01_voi_tay_nguyen_pano.jpg`, `js/assets.js`).
+- Chapter 1 herd line: "Thì ra những con voi thường sống và di chuyển theo
+  bầy đàn." Photo NOT replaced: no freely licensed photo of a moving wild
+  herd in Tây Nguyên was found (Wikimedia Commons, iNaturalist checked; the
+  wild-herd records are in Cát Tiên, Đồng Nai, or show dung/tracks). Keep
+  `vn_04` until the team supplies its own photo.
+- Chapter 2 farewell: new elder line + researcher reply "Dạ vâng ạ, cháu cảm
+  ơn ông ạ. Cháu đi ngay đây ạ."
+- Rope booth intro: added "Đây là một trò chơi mô phỏng…"; replaced the
+  "Ngày trước…" and "Vua voi…" lines; "Bạn có sáu vòng…". The rank table now
+  shows on intro indices 2–4 (`js/field/game.js`).
+- Quiz booth: new first line "Chào bạn! Bạn có muốn trải nghiệm…".
+- Shop customers speak with "Tôi" (requests and thanks).
+
+Gameplay / UI
+- Rope game: `ROPE_THROWS = 6` exported from `js/field/games.js` and used
+  everywhere (stats, last-throw hint, finish, results); 20-point lane now
+  has 2 targets.
+- Speaker name colours: `speakerKey()` in `js/main.js` sets
+  `#speaker[data-who]`; colours in `css/game.css` (narrator green,
+  researcher terracotta, Đăm Săn blue, già làng purple, chủ sạp teal,
+  hệ thống gold, sổ tay olive, khách rose). Same colours on the shop and
+  storehouse labels (`css/field.css`).
+- "BẮT ĐẦU HÀNH TRÌNH": larger pill button (≥52 px), pulsing glow, arrow
+  inside and a bouncing ▼ pointer (`js/visuals.js`, `css/game.css`).
+- Storehouse objects: larger (22 % × 54 %) on a cream halo, stronger shadow.
+- Souvenir designs: full-width row, floating A/B/C badge, pictures ~2× on
+  phones.
+- `js/actor.js`: fixed a race where fast tapping could leave an old sprite
+  on screen (only the newest sprite may appear; `clearExcept`).
+- Cache: every versioned import and `index.html` now use `?v=spark7`;
+  `scenes.js`, `visuals.js`, `actor.js` and root `assets.js` imports are
+  versioned too. Keep all importers of a module on the same query string.
+
+Tested at 780×360 and 1366×768: all Prologue lines and colours, mission
+button, Ama Kông lines, storehouse, rope intro (rank table on lines 2–4),
+6 throws → "Đã ném 6/6 vòng", 2 × 20-point targets, shop layout, fast
+tapping through the Prologue leaves no stray sprite, no console errors.

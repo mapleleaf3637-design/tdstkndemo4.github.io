@@ -1,7 +1,9 @@
-import { pic, control, pad, panel } from "./ui.js?v=spark";
-import { orders, questions, branches } from "./story.js?v=spark";
+import { pic, control, pad, panel } from "./ui.js?v=spark7";
+import { orders, questions, branches } from "./story.js?v=spark7";
+// Number of rings in the rope booth (feedback 2026-11-27: 6 rounds).
+export const ROPE_THROWS = 6;
 export const lanes = [
-  { score: 20, count: 1, size: 6, speed: 2.8 },
+  { score: 20, count: 2, size: 6, speed: 2.8 },
   { score: 10, count: 3, size: 8, speed: 4 },
   { score: 5, count: 5, size: 10, speed: 5.5 },
   { score: 3, count: 7, size: 12, speed: 7 },
@@ -114,8 +116,10 @@ export function rope(s) {
     .join("");
   return (
     '<div class="game-stats"><span>Thời gian <b data-clock></b></span><span>Vòng <b id="throws">' +
-    (5 - s.throws) +
-    '/5</b></span><span>Điểm <b id="score">' +
+    (ROPE_THROWS - s.throws) +
+    "/" +
+    ROPE_THROWS +
+    '</b></span><span>Điểm <b id="score">' +
     s.score +
     '</b></span></div><div id="rope-field" tabindex="0" role="application" aria-label="Bãi ném vòng. Chạm để ngắm, chạm lần nữa để ném. Dùng phím mũi tên và Enter trên bàn phím.">' +
     rails +
@@ -245,7 +249,8 @@ export function results(s) {
     note = branches[s.booth + 3][1];
   if (s.booth === 0) {
     heading = "Hoàn thành lượt ném";
-    stats = s.score + " điểm · Đã ném " + s.throws + "/5 vòng";
+    stats =
+      s.score + " điểm · Đã ném " + s.throws + "/" + ROPE_THROWS + " vòng";
   }
   if (s.booth === 1) {
     const pass = s.correct / 12 > 0.2;

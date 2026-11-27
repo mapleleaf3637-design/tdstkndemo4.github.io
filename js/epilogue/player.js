@@ -1,7 +1,7 @@
 import { scenes, comparisons, comparisonClosing, choices } from "./story.js";
 import { epAssets } from "./assets.js";
-import { bg, preload, view } from "./view.js?v=spark6";
-import { PREVIEW_URL } from "../config.js?v=spark";
+import { bg, preload, view } from "./view.js?v=spark7";
+import { PREVIEW_URL } from "../config.js?v=spark7";
 import { readProgress, writeProgress } from "../storage.js";
 
 const steps = [];

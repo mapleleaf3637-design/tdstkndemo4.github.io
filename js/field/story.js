@@ -75,10 +75,7 @@ const groups = [
     null,
     ["vn_04"],
     [
-      [
-        R,
-        "Hai con voi nhà đứng sát bên nhau. Trong rừng, voi cũng thường sống thành đàn sao?",
-      ],
+      [R, "Thì ra những con voi thường sống và di chuyển theo bầy đàn."],
       [
         S,
         "Đàn gia đình của voi châu Á thường gồm voi cái và voi con, dưới sự dẫn dắt của một voi cái trưởng thành.",
@@ -224,8 +221,9 @@ const groups = [
       ],
       [
         G,
-        "Hôm nay buôn mình mở hội. Tới sân hội đi cháu, mỗi sạp còn có một câu chuyện riêng.",
+        "Hôm nay buôn mình mở hội. Nếu cháu muốn tìm hiểu thêm về các lĩnh vực khác của đời sống con người và voi, hãy đến đó mà thăm quan.",
       ],
+      [R, "Dạ vâng ạ, cháu cảm ơn ông ạ. Cháu đi ngay đây ạ."],
     ],
   ],
   [
@@ -278,10 +276,11 @@ export const booths = [
     start: "Bắt đầu ném",
     intro: [
       "Lại đây nào! Bạn thử tài ném vòng vào những tấm bia voi bằng bìa nhé?",
-      "Ngày trước, nghề săn voi ở Buôn Đôn có nhiều vai trò. Theo lời nghệ nhân Y Khu Êban, Băk sai là người phụ việc, học nghề trong đoàn.",
+      "Đây là một trò chơi mô phỏng quá trình bắt voi ngày xưa.",
+      "Ngày trước, những người thợ săn voi ở Buôn Đôn có nhiều thứ bậc khác nhau. Theo lời nghệ nhân Y Khu Êban, Băk sai là người phụ việc, học nghề trong đoàn.",
       "Theo lời kể ấy, thợ phụ giúp bắt 5 con và đủ kinh nghiệm đi rừng sẽ được làm lễ thành Gru. Gru toih là trưởng đoàn, gắn với thành tích từ mười con.",
-      "Vua Voi là danh hiệu hiếm, gắn với thành tích trên sáu mươi con trong cách kể này. Đây là chuyện nghề xưa.",
-      "Bạn có năm vòng và một phút. Bia càng xa càng nhỏ, chạy càng nhanh và được càng nhiều điểm. Bụi cỏ tính 0 điểm.",
+      "Vua voi là những gru toih bắt trên 60 con voi, không chỉ được dân làng mà cả các tộc người trong vùng kính nể.",
+      "Bạn có sáu vòng và một phút. Bia càng xa càng nhỏ, chạy càng nhanh và được càng nhiều điểm. Bụi cỏ tính 0 điểm.",
     ],
   },
   {
@@ -291,6 +290,7 @@ export const booths = [
     npc: "ch_08",
     start: "Bắt đầu",
     intro: [
+      "Chào bạn! Bạn có muốn trải nghiệm một game mô phỏng về hội đua voi ở Buôn Đôn không?",
       "Ngày trước, đua voi từng có mặt trong hội ở Buôn Đôn. Ngày nay, hội có những hoạt động thân thiện hơn với voi.",
       "Ở sạp này, chúng ta di chuyển một quân cờ voi trên bàn. Mỗi câu đúng, quân cờ tiến một bước.",
       "Bạn có 30 giây cho 12 câu. Trả lời đúng ít nhất 3 câu để vượt mức 20%. Sẵn sàng chưa?",
@@ -359,19 +359,19 @@ export const orders = [
   {
     item: "Chiếc áo kể chuyện xưa",
     request:
-      "Mình muốn một chiếc áo gợi nhớ chuyện voi từng giúp người dân chở hàng qua rừng.",
+      "Tôi muốn một chiếc áo gợi nhớ chuyện voi từng giúp người dân chở hàng qua rừng.",
     labels: ["Áo in cảnh chở hàng", "Áo in cảnh kiếm ăn", "Áo in hình cồng"],
     replies: [
       "Đúng rồi! Áo in cảnh voi chở hàng. Ngày trước voi từng giúp người dân vận chuyển những vật nặng qua đường rừng.",
       "Mẫu này kể chuyện voi dùng vòi hái lá. Vị khách đang tìm một câu chuyện về lao động ngày trước.",
       "Những chiếc cồng gợi đời sống văn hóa. Hãy tìm hình cho thấy voi từng giúp người dân vận chuyển.",
     ],
-    thanks: "Đây chính là câu chuyện mình muốn nhớ. Cảm ơn bạn!",
+    thanks: "Đây chính là câu chuyện tôi muốn nhớ. Cảm ơn bạn!",
   },
   {
     item: "Chiếc túi của người quan sát",
     request:
-      "Mình muốn một chiếc túi để nhớ chuyến du lịch được ngắm voi sinh hoạt tự nhiên từ xa.",
+      "Tôi muốn một chiếc túi để nhớ chuyến du lịch được ngắm voi sinh hoạt tự nhiên từ xa.",
     labels: [
       "Túi in bành chở người",
       "Túi in cảnh quan sát voi",
@@ -382,18 +382,18 @@ export const orders = [
       "Chính xác! Khách đứng xa để voi được tự do kiếm ăn. Đây là trải nghiệm du lịch thân thiện với voi.",
       "Túi này kể về việc voi kéo gỗ trước đây. Hãy xem mẫu có khách quan sát từ xa.",
     ],
-    thanks: "Đúng là điều mình muốn ghi nhớ sau chuyến đi!",
+    thanks: "Đúng là điều tôi muốn ghi nhớ sau chuyến đi!",
   },
   {
     item: "Món quà từ bàn tay người dệt",
     request:
-      "Mình muốn mua một tấm vải làm quà và ủng hộ những người làm nghề dệt thủ công ở đây.",
+      "Tôi muốn mua một tấm vải làm quà và ủng hộ những người làm nghề dệt thủ công ở đây.",
     labels: ["Vải in công nghiệp", "Vải đính hình voi", "Vải dệt thủ công"],
     replies: [
       "Các hình voi lặp lại trên vải in công nghiệp. Khách đang muốn ủng hộ người làm nghề dệt.",
       "Con voi nhỏ được đính lên vải. Vị khách muốn chọn sản phẩm thể hiện kỹ thuật dệt.",
       "Đúng rồi! Tấm vải dệt gợi bàn tay người làm nghề. Việc mua đồ thủ công có thể góp phần nuôi sống người thợ và gìn giữ kỹ năng dệt.",
     ],
-    thanks: "Mình rất thích món quà này. Cảm ơn bạn!",
+    thanks: "Tôi rất thích món quà này. Cảm ơn bạn!",
   },
 ];
